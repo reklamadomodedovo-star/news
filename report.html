@@ -1,0 +1,565 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Аналитический отчёт: что привлекает читателей новостных порталов — и как это применить</title>
+<style>
+*,*::before,*::after{box-sizing:border-box}
+:root{
+  --paper:#FBFAF8; --surface:#fff; --tint:#F5F3EE; --tint-2:#EFECE5;
+  --ink:#0D1A26; --ink-2:#232E38; --body:#2C3742; --sec:#5B6672; --muted:#7C8794; --faint:#A9B0B8;
+  --line:#E6E3DC; --line-2:#D6D2C9;
+  --blue:#0F4C81; --red:#A62B2B; --amber:#8C5A2B; --ok:#2C6E52;
+  --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PT Sans","Helvetica Neue",Arial,sans-serif;
+  --serif:Georgia,"Iowan Old Style","Palatino Linotype",Palatino,"PT Serif","Times New Roman",serif;
+}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.6 var(--sans);-webkit-font-smoothing:antialiased}
+a{color:var(--blue);text-decoration:none;border-bottom:1px solid rgba(15,76,129,.25)}
+a:hover{border-bottom-color:var(--blue)}
+.wrap{max-width:1000px;margin:0 auto;padding:0 30px}
+header.hero{border-bottom:1px solid var(--line-2);background:var(--surface)}
+.hero__in{max-width:1000px;margin:0 auto;padding:44px 30px 34px}
+.kicker{margin:0 0 12px;font:600 11.5px/1.4 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--blue)}
+h1{margin:0;font:700 44px/1.12 var(--serif);letter-spacing:-.015em}
+h2{margin:0;font:700 29px/1.2 var(--serif);letter-spacing:-.01em}
+h3{margin:0;font:700 20px/1.3 var(--serif)}
+h4{margin:0;font:700 16px/1.35 var(--serif)}
+.lead{margin:18px 0 0;font-size:19.5px;line-height:1.6;color:var(--body);max-width:820px}
+.meta{display:flex;flex-wrap:wrap;gap:10px 20px;margin-top:20px;font-size:13px;color:var(--muted)}
+.meta b{color:var(--sec);font-weight:600}
+nav.toc{position:sticky;top:0;z-index:20;background:rgba(251,250,248,.94);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.toc__in{max-width:1000px;margin:0 auto;padding:11px 30px;display:flex;gap:6px;overflow:auto}
+.toc a{border:0;padding:6px 11px;border-radius:2px;font-size:13.5px;color:var(--sec);white-space:nowrap}
+.toc a:hover{background:var(--tint);color:var(--ink)}
+.toc a.on{background:var(--ink);color:#fff}
+section{padding:46px 0;border-bottom:1px solid var(--line)}
+section:last-of-type{border-bottom:0}
+.sechead{margin-bottom:26px}
+.sechead p{margin:10px 0 0;color:var(--body);font-size:17px;max-width:840px}
+.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px}
+.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.card{border:1px solid var(--line);background:var(--surface);padding:20px 22px}
+.card b{display:block;font:700 17px/1.3 var(--serif);margin-bottom:8px}
+.card p{margin:0;color:var(--body);font-size:15.5px;line-height:1.6}
+.card--accent{border-left:3px solid var(--ink)}
+.chart{border:1px solid var(--line);background:var(--surface);padding:22px 24px;margin:0 0 22px}
+.chart h4{margin:0 0 4px;font-size:16.5px}
+.chart .sub{margin:0 0 16px;font-size:13.5px;color:var(--muted)}
+.chart svg{display:block;width:100%;height:auto}
+.legend{display:flex;gap:18px;flex-wrap:wrap;margin-top:12px;font-size:13px;color:var(--sec)}
+.legend i{display:inline-block;width:10px;height:10px;margin-right:7px;border-radius:2px;vertical-align:middle}
+table{width:100%;border-collapse:collapse;font-size:15px}
+th,td{padding:11px 13px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top;line-height:1.5}
+th{background:var(--tint);font-size:12.5px;letter-spacing:.05em;text-transform:uppercase;color:var(--sec)}
+tr:last-child td{border-bottom:0}
+.tablewrap{border:1px solid var(--line);border-top:2px solid var(--ink);overflow:auto}
+.num{font-variant-numeric:tabular-nums;white-space:nowrap}
+.pill{display:inline-flex;align-items:center;gap:6px;padding:3px 9px;border-radius:2px;font-size:12px;font-weight:600;white-space:nowrap}
+.pill--ok{background:#EEF5F1;color:var(--ok)}
+.pill--warn{background:#FAF4EA;color:var(--amber)}
+.pill--red{background:#FBF1F0;color:var(--red)}
+.pill--blue{background:#EDF3F8;color:var(--blue)}
+.stat{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin:0 0 24px}
+.stat div{border:1px solid var(--line);background:var(--surface);padding:16px 18px}
+.stat b{display:block;font:700 30px/1.05 var(--serif);letter-spacing:-.01em}
+.stat span{display:block;margin-top:8px;font-size:13.5px;color:var(--body);line-height:1.45}
+.stat small{display:block;margin-top:6px;font-size:11.5px;color:var(--muted)}
+ul.clean{margin:0;padding-left:20px;color:var(--body);font-size:15.5px;line-height:1.62}
+ul.clean li{margin-bottom:9px}
+ul.clean b{color:var(--ink)}
+.note{border:1px solid var(--line);border-left:3px solid var(--amber);background:#FDFAF6;padding:16px 20px;color:var(--body);font-size:15px;line-height:1.6}
+.note b{color:var(--ink)}
+.src{margin:6px 0 0;font-size:12.5px;color:var(--muted)}
+footer{padding:34px 0 60px;background:var(--tint);border-top:1px solid var(--line-2)}
+footer ol{margin:0;padding-left:22px;font-size:13.5px;color:var(--body);line-height:1.6}
+footer li{margin-bottom:7px}
+footer a{word-break:break-word}
+@media (max-width:900px){.grid2,.grid3,.stat{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:640px){
+  h1{font-size:31px}.lead{font-size:17.5px}h2{font-size:23px}
+  .wrap,.hero__in,.toc__in{padding-left:18px;padding-right:18px}
+  .grid2,.grid3,.stat{grid-template-columns:minmax(0,1fr)}
+  section{padding:34px 0}
+  .stat b{font-size:26px}
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero__in">
+    <p class="kicker">Аналитический отчёт · исследование перед проектированием</p>
+    <h1>Что привлекает читателей новостных порталов — и как это применить к нашему сайту</h1>
+    <p class="lead">Разбираем 30 самых посещаемых новостных порталов мира и России, данные о поведении аудитории (Reuters Institute, Pew Research, Google, Mediascope, Similarweb) и связь между внешним видом сайта и его популярностью. В конце — свод правил, которые реализованы в прототипе портала «ФОКУС».</p>
+    <div class="meta">
+      <span>Подготовлено: <b>22 сентября 2026</b></span>
+      <span>Источников: <b>18 публикаций и исследований</b></span>
+      <span>Разделов: <b>7</b></span>
+      <span>Объект внедрения: <b>прототип в <span class="num">prototype/index.html</span></b></span>
+    </div>
+  </div>
+</header>
+
+<nav class="toc">
+  <div class="toc__in">
+    <a href="#s1" class="on">1. Метод</a>
+    <a href="#s2">2. Мировой рынок</a>
+    <a href="#s3">3. Россия</a>
+    <a href="#s4">4. Поведение читателя</a>
+    <a href="#s5">5. Дизайн и популярность</a>
+    <a href="#s6">6. Правила портала</a>
+    <a href="#s7">7. Что внедрено</a>
+    <a href="#src">Источники</a>
+  </div>
+</nav>
+
+<section id="s1">
+  <div class="wrap">
+    <div class="sechead">
+      <p class="kicker">Раздел 1</p>
+      <h2>Метод и оговорки</h2>
+      <p>Что именно измерялось и почему цифры из разных источников нельзя складывать напрямую.</p>
+    </div>
+    <div class="grid2">
+      <div class="card card--accent">
+        <b>Как считаются аудитории</b>
+        <p><b>Similarweb</b> и <b>Semrush</b> дают оценку визитов по панелям и моделированию, а <b>Mediascope</b> — измеренный охват (people-метрика, «сколько людей»). Из-за разных методик сайт может быть №1 по визитам и №5 по людям. Для решений это не критично: важен порядок величин и структура аудитории.</p>
+      </div>
+      <div class="card card--accent">
+        <b>Что считалось «привлекательностью»</b>
+        <p>Четыре группы метрик: объём аудитории (визиты, охват), удержание (глубина скролла, время, страницы за визит), возвраты (прямые заходы, подписки, рассылки) и доверие (доля согласных с «можно доверять»). Дизайн влияет на три последние группы сильнее, чем на первую.</p>
+      </div>
+      <div class="card">
+        <b>Ограничения выводов</b>
+        <p>Опросы (Reuters Institute, Pew) — самоотчёт, поведенческие данные (Google, Chartbeat) — панели браузеров и сайтов. Кейсы вроде «+70% глубины скролла» — единичные внедрения, поэтому используем их как гипотезы, а не как гарантию.</p>
+      </div>
+      <div class="card">
+        <b>Как это применяем</b>
+        <p>Из каждого блока данных берём правило, у которого есть измеримый эффект и которое реализуемо на WordPress: скорость, иерархия, форматы блоков, доверие, мультимедиа, возвраты. Затем эти правила переносим в макет и в дизайн-систему.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="s2">
+  <div class="wrap">
+    <div class="sechead">
+      <p class="kicker">Раздел 2</p>
+      <h2>Мировой рынок: кто собирает аудиторию и почему</h2>
+      <p>Рейтинг Similarweb (август 2026) и данные о визитах за май 2025 — то, что стоит за словом «самый популярный».</p>
+    </div>
+
+    <div class="chart">
+      <h4>Топ-12 новостных сайтов мира, август 2026</h4>
+      <p class="sub">Порядок по оценке визитов Similarweb. Агрегаторы и медиа-хабы (Yahoo, MSN, Google News, Dzen) стоят рядом с редакциями (NYT, BBC, Globo, CNN).</p>
+      <svg viewBox="0 0 900 400" role="img" aria-label="Топ-12 новостных сайтов мира">
+        <g font-family="sans-serif" font-size="12.5" fill="#2C3742">
+          <text x="0" y="26">1. yahoo.co.jp</text><rect x="170" y="14" width="700" height="16" fill="#0F4C81"></rect>
+          <text x="0" y="58">2. yahoo.com</text><rect x="170" y="46" width="640" height="16" fill="#0F4C81"></rect>
+          <text x="0" y="90">3. news.yahoo.co.jp</text><rect x="170" y="78" width="560" height="16" fill="#0F4C81"></rect>
+          <text x="0" y="122">4. globo.com</text><rect x="170" y="110" width="520" height="16" fill="#175E8C"></rect>
+          <text x="0" y="154">5. nytimes.com</text><rect x="170" y="142" width="470" height="16" fill="#175E8C"></rect>
+          <text x="0" y="186">6–7. bbc.co.uk / bbc.com</text><rect x="170" y="174" width="430" height="16" fill="#175E8C"></rect>
+          <text x="0" y="218">8. msn.com</text><rect x="170" y="206" width="380" height="16" fill="#3E6E9B"></rect>
+          <text x="0" y="250">12. cnn.com</text><rect x="170" y="238" width="300" height="16" fill="#3E6E9B"></rect>
+          <text x="0" y="282">14. news.google.com</text><rect x="170" y="270" width="270" height="16" fill="#3E6E9B"></rect>
+          <text x="0" y="314">15. theguardian.com</text><rect x="170" y="302" width="240" height="16" fill="#6E8AA6"></rect>
+          <text x="0" y="346">16. foxnews.com</text><rect x="170" y="334" width="225" height="16" fill="#6E8AA6"></rect>
+          <text x="0" y="378">33. rbc.ru — лучший результат РФ</text><rect x="170" y="366" width="95" height="16" fill="#A62B2B"></rect>
+        </g>
+      </svg>
+      <div class="legend"><span><i style="background:#0F4C81"></i>Лидеры категории</span><span><i style="background:#6E8AA6"></i>Сильные издательские бренды</span><span><i style="background:#A62B2B"></i>Россия</span></div>
+      <p class="src">Источник: Similarweb, Top News &amp; Media Publishers, август 2026.</p>
+    </div>
+
+    <div class="stat">
+      <div><b class="num">921 млн</b><span>визитов в месяц у Yahoo News Japan — №1 в мире</span><small>Press Gazette / Similarweb, май 2025</small></div>
+      <div><b class="num">795 млн</b><span>у бразильского Globo.com — №2</span><small>Press Gazette / Similarweb</small></div>
+      <div><b class="num">624 млн</b><span>у The New York Times — №3 и лучший «редакционный» результат</span><small>Press Gazette / Similarweb</small></div>
+      <div><b class="num">16 из 50</b><span>сайтов показали рост год к году: рынок стагнирует, борьба идёт за возвраты, а не за трафик</span><small>Press Gazette, июль 2025</small></div>
+    </div>
+
+    <div class="grid3">
+      <div class="card">
+        <b>Агрегаторы выигрывают доступность</b>
+        <p>Yahoo, MSN, Google News, Naver и Dzen собирают аудиторию привычкой «открыл вкладку — увидел всё». Их сила — в дистрибуции и персонализации, а не в оформлении отдельных материалов.</p>
+      </div>
+      <div class="card">
+        <b>Издания выигрывают доверие</b>
+        <p>NYT, BBC, Guardian, Globo, Bild собирают ядро лояльных читателей: их называют первым источником, когда нужно проверить факт (38% опрошенных Reuters Institute).</p>
+      </div>
+      <div class="card">
+        <b>Что общего у лидеров</b>
+        <p>Скорость на мобильных, крупный заголовок дня, лента обновлений, «самое читаемое», видео и подкасты, рассылки, аккуратная реклама вне текста. Разнится стиль — не набор механик.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="s3">
+  <div class="wrap">
+    <div class="sechead">
+      <p class="kicker">Раздел 3</p>
+      <h2>Россия: кто лидирует и как устроен спрос</h2>
+      <p>Данные Similarweb по категории «Новости и публикации», общий рейтинг сайтов РФ и измеренный охват Mediascope.</p>
+    </div>
+
+    <div class="tablewrap" style="margin-bottom:22px">
+      <table>
+        <tr><th>Место</th><th>Сайт</th><th>Позиция в общем топе РФ</th><th>Визитов в месяц</th><th>Тип</th></tr>
+        <tr><td>1</td><td>rbc.ru</td><td>№21 среди всех сайтов РФ</td><td class="num">118,4 млн</td><td>Деловое издание</td></tr>
+        <tr><td>2</td><td>rambler.ru</td><td>№33</td><td class="num">—</td><td>Медиа-хаб</td></tr>
+        <tr><td>3</td><td>ria.ru</td><td>№48</td><td class="num">62,8 млн</td><td>Информагентство</td></tr>
+        <tr><td>4</td><td>lenta.ru</td><td>—</td><td class="num">77,2 млн</td><td>Интернет-газета</td></tr>
+        <tr><td>5</td><td>news.mail.ru</td><td>№50</td><td class="num">—</td><td>Агрегатор почтового портала</td></tr>
+        <tr><td>—</td><td>dzen.ru</td><td><b>№3 среди всех сайтов РФ</b></td><td class="num">1 302 млн</td><td>Лента-персонализация</td></tr>
+      </table>
+    </div>
+    <p class="src" style="margin-bottom:22px">Источники: Similarweb, категория «Новости и публикации» в России, май 2026 и общий рейтинг сайтов России, июль 2026; оценки визитов — ноябрь 2025 (агрегатор данных iaassaaspaas по Similarweb / Semrush).</p>
+
+    <div class="chart">
+      <h4>Кто забирает интернет-аудиторию в России</h4>
+      <p class="sub">Месячный охват, млн человек (Mediascope, декабрь 2024, через сводный рейтинг) — видно, что «новостные сайты» конкурируют не только между собой, но и с экосистемами и лентами.</p>
+      <svg viewBox="0 0 900 230" role="img" aria-label="Месячный охват крупнейших ресурсов России">
+        <g font-family="sans-serif" font-size="12.5" fill="#2C3742">
+          <text x="0" y="24">Яндекс</text><rect x="180" y="12" width="700" height="18" fill="#0F4C81"></rect><text x="890" y="26" text-anchor="end" fill="#fff" font-weight="bold">100,3 млн · 82%</text>
+          <text x="0" y="62">ВКонтакте</text><rect x="180" y="50" width="642" height="18" fill="#175E8C"></rect><text x="812" y="64" text-anchor="end" fill="#fff" font-weight="bold">92,0 млн · 76%</text>
+          <text x="0" y="100">Дзен</text><rect x="180" y="88" width="539" height="18" fill="#3E6E9B"></rect><text x="709" y="102" text-anchor="end" fill="#fff" font-weight="bold">77,3 млн · 64%</text>
+          <text x="0" y="138">Одноклассники</text><rect x="180" y="126" width="480" height="18" fill="#6E8AA6"></rect><text x="650" y="140" text-anchor="end" fill="#fff" font-weight="bold">68,7 млн</text>
+          <text x="0" y="176">РБК (визиты)</text><rect x="180" y="164" width="120" height="18" fill="#A62B2B"></rect><text x="312" y="178" fill="#A62B2B" font-weight="bold">118,4 млн визитов</text>
+          <text x="0" y="214">Lenta.ru (визиты)</text><rect x="180" y="202" width="78" height="18" fill="#A62B2B"></rect><text x="270" y="216" fill="#A62B2B" font-weight="bold">77,2 млн визитов</text>
+        </g>
+      </svg>
+      <p class="src">Для РБК и Lenta.ru показаны визиты (другая метрика), остальные — месячный охват людей. Складывать значения между собой некорректно.</p>
+    </div>
+
+    <div class="grid3">
+      <div class="card">
+        <b>РБК — эталон «строгой» подачи</b>
+        <p>Плотная модульная сетка, деловая типографика, минимум декора, акцент на цифрах и графике. Медиаисследование МГУ описывает, как редакция РБК меняла вёрстку именно по данным веб-аналитики: где читатель «проваливается», там менялась структура.</p>
+      </div>
+      <div class="card">
+        <b>Lenta.ru — «воздух» и фотография</b>
+        <p>Дизайн Lenta.ru получал награду Society for News Design как лучший в мире: сдержанная палитра, правильное количество свободного пространства, работа с фотографией и мультиплатформенность. Редизайны 2010-х шли к лаконичности и минимализму.</p>
+      </div>
+      <div class="card">
+        <b>Дзен и Рамблер — лента и персонализация</b>
+        <p>Огромная аудитория лент показывает: читатель ценит бесконечный поток и подстройку интересов. Значит, у редакционного портала должны быть свои ответы на это — «Самое читаемое», «Для вас», лента обновлений.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="s4">
+  <div class="wrap">
+    <div class="sechead">
+      <p class="kicker">Раздел 4</p>
+      <h2>Что действительно привлекает и удерживает читателя</h2>
+      <p>Шесть групп факторов, подтверждённых данными. Они и стали основой макета.</p>
+    </div>
+
+    <h3 style="margin-bottom:14px">4.1 Скорость решает больше, чем украшения</h3>
+    <div class="stat">
+      <div><b class="num">53%</b><span>мобильных посетителей уходят, если страница грузится дольше 3 секунд</span><small>Google, Think with Google</small></div>
+      <div><b class="num">+32%</b><span>к вероятности отказа при росте загрузки с 1 до 3 секунд</span><small>Google</small></div>
+      <div><b class="num">−10%</b><span>пользователей за каждую дополнительную секунду загрузки</span><small>BBC</small></div>
+      <div><b class="num">+70%</b><span>к длительности сессии и −35% к отказам у сайтов, грузящихся быстрее 5 секунд</span><small>Google</small></div>
+    </div>
+    <div class="chart">
+      <h4>Отказы по времени загрузки: критичны первые секунды</h4>
+      <p class="sub">Рост вероятности отказа относительно загрузки за 1 секунду (данные Google по миллионам мобильных сессий).</p>
+      <svg viewBox="0 0 900 240" role="img" aria-label="Рост отказов при увеличении времени загрузки">
+        <line x1="60" y1="200" x2="880" y2="200" stroke="#D6D2C9"></line>
+        <line x1="60" y1="200" x2="60" y2="20" stroke="#D6D2C9"></line>
+        <g font-family="sans-serif" font-size="12" fill="#7C8794">
+          <text x="40" y="204" text-anchor="end">0%</text>
+          <text x="40" y="140" text-anchor="end">50%</text>
+          <text x="40" y="76" text-anchor="end">100%</text>
+        </g>
+        <g>
+          <rect x="110" y="188" width="90" height="12" fill="#2C6E52"></rect>
+          <text x="155" y="180" text-anchor="middle" font-family="sans-serif" font-size="12.5" font-weight="bold" fill="#2C6E52">1 с — база</text>
+          <rect x="290" y="158" width="90" height="42" fill="#8C5A2B"></rect>
+          <text x="335" y="150" text-anchor="middle" font-family="sans-serif" font-size="12.5" font-weight="bold" fill="#8C5A2B">3 с → +32%</text>
+          <rect x="470" y="86" width="90" height="114" fill="#A62B2B"></rect>
+          <text x="515" y="78" text-anchor="middle" font-family="sans-serif" font-size="12.5" font-weight="bold" fill="#A62B2B">5 с → +90%</text>
+          <rect x="650" y="68" width="90" height="132" fill="#7E1F1F"></rect>
+          <text x="695" y="60" text-anchor="middle" font-family="sans-serif" font-size="12.5" font-weight="bold" fill="#7E1F1F">6 с → +106%</text>
+        </g>
+      </svg>
+      <p class="src">Источник: сводка исследований Google (mobile page speed), 2025–2026.</p>
+    </div>
+    <div class="note"><b>Вывод для проекта:</b> вес страницы и LCP — не «техническая деталь», а фактор аудитории. В ТЗ по WordPress это уже заложено (LCP &lt; 2,5 с, вес статьи &lt; 1,5 МБ, асинхронная реклама) — в прототипе мы дополнительно убираем тяжёлые элементы и оставляем один системный шрифт + SVG-иконки.</div>
+
+    <h3 style="margin:32px 0 14px">4.2 Аудитория пришла с телефона и смотрит видео</h3>
+    <div class="grid2">
+      <div class="chart" style="margin:0">
+        <h4>Устройства: глобальная доля трафика</h4>
+        <p class="sub">StatCounter, усреднение за январь–июль 2025.</p>
+        <svg viewBox="0 0 420 60" role="img" aria-label="Доля устройств">
+          <rect x="0" y="0" width="245" height="34" fill="#0F4C81"></rect>
+          <rect x="245" y="0" width="167" height="34" fill="#9FB4C7"></rect>
+          <rect x="412" y="0" width="8" height="34" fill="#D6D2C9"></rect>
+          <text x="12" y="23" font-family="sans-serif" font-size="13" font-weight="bold" fill="#fff">Телефоны · 58,3%</text>
+          <text x="257" y="23" font-family="sans-serif" font-size="13" font-weight="bold" fill="#0D1A26">Компьютеры · 39,8%</text>
+        </svg>
+        <div class="legend"><span><i style="background:#0F4C81"></i>Мобайл</span><span><i style="background:#9FB4C7"></i>Десктоп</span><span><i style="background:#D6D2C9"></i>Планшеты 1,9%</span></div>
+      </div>
+      <div class="card" style="display:flex;flex-direction:column;justify-content:center">
+        <b>Видео — уже не «дополнение»</b>
+        <p>Доля тех, кто смотрит новостное видео хотя бы иногда, выросла с 67% до 75% за пять лет, социальное видео — с 52% до 65%. 77% аудитории смотрят онлайн-видео новостей еженедельно. У 18–24 лет соцсети и видеоформаты — главный источник новостей (44%).</p>
+        <p class="src">Reuters Institute, Digital News Report 2025.</p>
+      </div>
+    </div>
+
+    <h3 style="margin:32px 0 14px">4.3 Доверие — дефицитный ресурс, и его надо показывать</h3>
+    <div class="stat">
+      <div><b class="num">40% → 37%</b><span>доверие к новостям в мире: 40% в 2025 и исторический минимум 37% в 2026</span><small>Reuters Institute, DNR 2025 / 2026</small></div>
+      <div><b class="num">40–42%</b><span>аудитории периодически избегает новостей — «усталость от повестки»</span><small>Reuters Institute</small></div>
+      <div><b class="num">38%</b><span>при проверке сомнительной новости идут к изданию, которому доверяют — больше, чем к соцсетям (14%)</span><small>Reuters Institute</small></div>
+      <div><b class="num">62%</b><span>обеспокоены тем, что не отличат правду от фейка</span><small>Reuters Institute, DNR 2026</small></div>
+    </div>
+    <div class="grid3">
+      <div class="card"><b>Что читатель читает как «надёжное»</b><p>Подпись автора с фото, время публикации и обновления, ссылка на источник данных, отдельные колонки и разборы, редакционные пометки. У NYT комментарии превращены в редакционный продукт: журналисты отвечают и ведут обсуждение.</p></div>
+      <div class="card"><b>Почему это важно для дизайна</b><p>Доверие читается визуально: чистая сетка, аккуратные подписи, отсутствие «кричащих» плашек, честная пометка «реклама». Перегруженный рекламой сайт теряет и доверие, и деньги: 3–4 блока с высокой видимостью дают больше, чем 6–8 «слепых».</p></div>
+      <div class="card"><b>Что делаем в прототипе</b><p>Карточка автора с биографией и подпиской, метка времени «обновлено», «Игорь Петров, обозреватель» в колонке, пометки «Нативная рекомендация · реклама» у партнёрских блоков.</p></div>
+    </div>
+
+    <h3 style="margin:32px 0 14px">4.4 Вовлечение живёт ниже первого экрана</h3>
+    <div class="grid2">
+      <div class="card">
+        <b>Данные о глубине чтения</b>
+        <p>Для новостных сайтов хорошая глубина скролла — 75–85%, отличная — 90%+. Исследование Chartbeat на 25 млн визитов показало: основное взаимодействие происходит ниже первого экрана, поэтому рекомендации и «Читайте также» имеет смысл ставить в конце материала, а не только в сайдбаре.</p>
+        <p class="src">Chartbeat; отраслевые бенчмарки scroll depth, 2025.</p>
+      </div>
+      <div class="card">
+        <b>Комментарии как драйвер удержания</b>
+        <p>У Financial Times читатели, открывающие комментарии, вовлечены в 11 раз сильнее, а те, кто пишет, — в 46 раз. The Times (Лондон) строит из комментариев «читательские статьи». Комментарии — не «социальная функция», а инструмент возвратов.</p>
+        <p class="src">The Audiencers, 2025–2026.</p>
+      </div>
+      <div class="card">
+        <b>Персонализация ускоряет чтение</b>
+        <p>Кейс новостного сайта с ML-подборкой: средняя глубина скролла выросла на 70%. В прототипе персонализация показана блоком «Для вас» с памятью о прочитанном — базовый уровень, который реализуется плагином на WordPress.</p>
+        <p class="src">Сводка кейсов по scroll depth, 2025.</p>
+      </div>
+      <div class="card">
+        <b>Рассылки формируют привычку</b>
+        <p>E-mail-рассылки — сильнейший драйвер привычного возврата; у медиабрендов они дают tens of thousands новых подписчиков в месяц и удерживают от оттока. Поэтому подписка в прототипе стоит в трёх местах: главная, статья, календарь — но никогда не на первом экране.</p>
+        <p class="src">INMA, 2025; InternetRetailing, 2025.</p>
+      </div>
+    </div>
+
+    <h3 style="margin:32px 0 14px">4.5 Реклама: меньше, но лучше видно</h3>
+    <div class="chart">
+      <h4>Целевая плотность рекламы по типам страниц</h4>
+      <p class="sub">Доля высоты рекламных блоков от контентной области. Порог Better Ads Standards для мобильных — 30%, но издатели, ориентированные на видимость, держатся ниже.</p>
+      <svg viewBox="0 0 900 200" role="img" aria-label="Целевая плотность рекламы">
+        <g font-family="sans-serif" font-size="13" fill="#2C3742">
+          <text x="0" y="34">Главная страница</text>
+          <rect x="220" y="18" width="140" height="22" fill="#2C6E52"></rect>
+          <text x="374" y="35" font-weight="bold" fill="#2C6E52">15–20%</text>
+          <text x="0" y="84">Раздел / рубрика</text>
+          <rect x="220" y="68" width="158" height="22" fill="#5B8F76"></rect>
+          <text x="392" y="85" font-weight="bold" fill="#3F6B55">18–22%</text>
+          <text x="0" y="134">Статья</text>
+          <rect x="220" y="118" width="196" height="22" fill="#8C5A2B"></rect>
+          <text x="430" y="135" font-weight="bold" fill="#8C5A2B">20–28%</text>
+          <text x="0" y="184">Срочные новости</text>
+          <rect x="220" y="168" width="70" height="22" fill="#A62B2B"></rect>
+          <text x="304" y="185" font-weight="bold" fill="#A62B2B">минимум — доверие важнее импрессий</text>
+        </g>
+      </svg>
+      <p class="src">Источник: Playwire, ad density best practices для новостных изданий; Coalition for Better Ads.</p>
+    </div>
+
+    <h3 style="margin:32px 0 14px">4.6 Первые секунды: за что цепляется взгляд</h3>
+    <ul class="clean">
+      <li><b>5,9 секунды</b> — среднее время, которое пользователь удерживает внимание на центральном изображении первого экрана. Значит, главный материал дня должен быть узнаваемым по фото и заголовку сразу.</li>
+      <li><b>57% времени просмотра</b> приходится на первый экран, но действие происходит ниже — сочетание крупного «лида» и ленты сразу под ним.</li>
+      <li><b>38% пользователей</b> оценивают сайт по навигации и структуре: горизонтальное меню, видимый поиск, понятные рубрики.</li>
+      <li><b>Стандартная раскладка выигрывает:</b> логотип слева, меню сверху, поиск рядом. Нестандартная сетка снижает воспринимаемую надёжность, а не повышает «креативность».</li>
+    </ul>
+    <p class="src">Источники: сводки UX-исследований по первым экранам и визуальной иерархии, 2024–2026 (в том числе Orbit Media, DigitalSilk).</p>
+  </div>
+</section>
+
+<section id="s5">
+  <div class="wrap">
+    <div class="sechead">
+      <p class="kicker">Раздел 5</p>
+      <h2>Как внешний вид сайта связан с популярностью</h2>
+      <p>Главный вопрос: делает ли «красивый» дизайн сайт популярным? Данные дают неожиданный, но практичный ответ.</p>
+    </div>
+
+    <div class="grid2">
+      <div class="card card--accent">
+        <b>Дизайн не приносит трафик</b>
+        <p>Лидеры по посещаемости — агрегаторы и хабы (Yahoo, MSN, Google News, Naver, Дзен), чей успех задан дистрибуцией, привычкой и персонализацией. Рейтинг «самых посещаемых» почти не пересекается с рейтингом «лучший дизайн». Вывод: внешний вид нельзя назначить источником роста аудитории.</p>
+      </div>
+      <div class="card card--accent">
+        <b>Но дизайн управляет удержанием и доверием</b>
+        <p>А они прямо влияют на деньги и на возвраты: у сайтов с быстрым интерфейсом сессия на 70% длиннее, отказы ниже на 35%; читатели комментариев вовлечены в 11–46 раз сильнее; сдержанная реклама даёт выше CPM. Именно здесь дизайн работает как рычаг.</p>
+      </div>
+      <div class="card">
+        <b>Что получило награды SND</b>
+        <p>World’s Best Designed: DIE ZEIT и Weekendavisen (печать) и The New York Times (цифровой дизайн, инфографика). Формулировки жюри повторяют одно и то же: сдержанность, работа с типографикой, качественная фотография и осмысленное место для каждого элемента. Слов «анимация» и «эффекты» в обоснованиях нет.</p>
+        <p class="src">Society for News Design, 2024.</p>
+      </div>
+      <div class="card">
+        <b>Что это значит для нас</b>
+        <p>«Премиальность» создаётся не декором, а дисциплиной: серифная типографика, одна акцентная система, крупные фотографии, волосяные линии, воздух. А «современность» — скоростью, живыми блоками (лента обновлений, тикер), мультимедиа, тёмной темой и аккуратными микроанимациями, которые не мешают чтению.</p>
+      </div>
+    </div>
+
+    <div class="tablewrap" style="margin-top:26px">
+      <table>
+        <tr><th>Сайт</th><th>Дизайн-код</th><th>Что даёт аудитории</th><th>Что берём мы</th></tr>
+        <tr><td>The New York Times</td><td>Серифы, строгая сетка, выдающаяся инфографика, комментарии как продукт</td><td>№3 в мире по визитам, репутация эталона визуального рассказа</td><td>Автор и комментарии как часть материала, инфографика и таблицы в обзорах</td></tr>
+        <tr><td>BBC</td><td>Классическая иерархия, крупные фото, живые страницы и постоянные live-обновления</td><td>474 млн визитов (май 2025), доверие №1 в проверке фактов</td><td>Лента обновлений с временем, метки «Обновлено»</td></tr>
+        <tr><td>DIE ZEIT / Weekendavisen</td><td>Рестрейнт, тонкая работа с шрифтом и цветом</td><td>Мировое признание дизайна, преданный читатель</td><td>Сдержанная палитра, серифы, максимум воздуха</td></tr>
+        <tr><td>РБК</td><td>Деловая модульная сетка, цифры и графики на первом плане</td><td>№1 среди новостных в РФ, 118 млн визитов</td><td>Блоки «Главное сейчас», «Самое читаемое», метрики и таблицы</td></tr>
+        <tr><td>Lenta.ru</td><td>Минимализм, крупные фото, много свободного пространства</td><td>77 млн визитов; награда SND за дизайн</td><td>Лаконичная сетка, фотокарточки с фиксированными пропорциями</td></tr>
+        <tr><td>Дзен</td><td>Бесконечная лента, подстройка под интересы</td><td>№3 среди всех сайтов России, 1,3 млрд визитов</td><td>Блок «Для вас» и принцип непрерывной ленты на главной</td></tr>
+      </table>
+    </div>
+
+    <div class="note" style="margin-top:24px"><b>Итоговая формула:</b> аудиторию приводят дистрибуция и привычка, а <b>удерживает и монетизирует</b> — быстрый, ясный и доверительный интерфейс. Поэтому наш портал строится как «строгое издание по виду» + «лента и живые механики по поведению».</div>
+  </div>
+</section>
+
+<section id="s6">
+  <div class="wrap">
+    <div class="sechead">
+      <p class="kicker">Раздел 6</p>
+      <h2>Правила портала, выведенные из данных</h2>
+      <p>20 решений с обоснованием. Правая колонка — где именно правило реализовано в прототипе.</p>
+    </div>
+    <div class="tablewrap">
+      <table>
+        <tr><th style="width:34%">Правило</th><th style="width:38%">Почему (данные)</th><th>Где в прототипе</th></tr>
+        <tr><td>Скорость и лёгкость интерфейса</td><td>53% мобильных уходят после 3 с; BBC теряет 10% аудитории за каждую секунду</td><td>Один системный шрифт, SVG-иконки, без внешних библиотек, вес страницы &lt; 300 КБ</td></tr>
+        <tr><td>Крупный главный материал дня</td><td>5,9 с удержания взгляда на герой-изображении; 57% времени просмотра — первый экран</td><td>Лид-история с фото 16:9, крупным заголовком и лидом</td></tr>
+        <tr><td>Полоса срочных новостей</td><td>Срочные темы дают пик трафика; читатель ценит понимание «что случилось прямо сейчас»</td><td>Бегущая строка под меню + красная метка с временем</td></tr>
+        <tr><td>Лента обновлений (live)</td><td>Live-форматы удерживают аудиторию в моменте; BBC и Guardian строят на них трафик событий</td><td>Блок «Лента обновлений» с временем и автообновлением</td></tr>
+        <tr><td>«Главное сейчас» и «Самое читаемое»</td><td>Социальное доказательство и быстрый вход в повестку; агрегаторы выигрывают именно этим</td><td>Рельс первого экрана и сайдбар</td></tr>
+        <tr><td>Понятная навигация и поиск на виду</td><td>38% пользователей судят сайт по структуре; стандартная раскладка повышает доверие</td><td>Горизонтальное меню по ширине, поиск в шапке и на первом экране</td></tr>
+        <tr><td>Крупная типографика и воздух</td><td>Глубина чтения и время на странице растут при хорошей сканируемости текста</td><td>Сериф 19 px, интервал 24 px, ширина колонки 740 px</td></tr>
+        <tr><td>Подзаголовки и разбивка текста</td><td>Новостные тексты читают сканированием; подзаголовки удерживают до конца</td><td>Подзаголовок каждые 3–5 абзацев, списки, таблица, врезная цитата</td></tr>
+        <tr><td>Рекомендации в конце статьи</td><td>Основное взаимодействие — ниже первого экрана; сайдбар часто игнорируется</td><td>Блок «Читайте также» на 4 материала под текстом</td></tr>
+        <tr><td>Реклама: 15–20% главная, 20–28% статья</td><td>Плотность выше 30% снижает видимость, CPM и возвраты</td><td>13 размеченных зон, все — вне изображений и текста</td></tr>
+        <tr><td>Пометки «реклама» и «партнёрский материал»</td><td>62% боятся фейков; прозрачность — часть доверия</td><td>Нативные блоки с явной меткой и data-track</td></tr>
+        <tr><td>Автор с фото и подпиской</td><td>Доверие строится на людях: медиабренды делают ставку на журналистов</td><td>Карточка автора под статьёй и в колонке</td></tr>
+        <tr><td>Мультимедиа: видео и подкасты</td><td>77% смотрят новостное видео еженедельно; видео — растущий формат</td><td>Блок «Видео и подкасты» с длительностью и кнопкой воспроизведения</td></tr>
+        <tr><td>Рассылки в трёх точках</td><td>E-mail — сильнейший драйвер привычки и возвратов</td><td>Главная, статья, календарь; не на первом экране</td></tr>
+        <tr><td>Персонализация «Для вас»</td><td>Кейсы: +70% глубины скролла при персональной подборке</td><td>Блок «Для вас» с памятью о прочитанном и сбросом</td></tr>
+        <tr><td>Интерактив: опрос и комментарии</td><td>Читатели комментариев вовлечены в 11–46 раз сильнее</td><td>Опрос недели с анимацией результатов, модерация комментариев</td></tr>
+        <tr><td>Прогресс чтения и «осталось N минут»</td><td>Помогает удержать до конца длинного материала</td><td>Полоса прогресса и таймер в статье</td></tr>
+        <tr><td>Тёмная тема</td><td>Чтение вечером и в приложениях; ожидание современного сайта</td><td>Переключатель темы в служебной полосе</td></tr>
+        <tr><td>Микроанимации без помех чтению</td><td>Анимации улучшают восприятие, но не должны отвлекать и ломать доступность</td><td>Появление блоков при скролле, зум фото, уважение <span class="num">prefers-reduced-motion</span></td></tr>
+        <tr><td>Служебные виджеты (погода, курсы, время)</td><td>Привычка «заходить за сводкой» — часть ежедневного возврата</td><td>Служебная полоса с погодой, курсами и тёмной темой</td></tr>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section id="s7">
+  <div class="wrap">
+    <div class="sechead">
+      <p class="kicker">Раздел 7</p>
+      <h2>Что именно изменено в прототипе</h2>
+      <p>Список внедрённых решений — их можно проверить в живом прототипе <span class="num">prototype/index.html</span>.</p>
+    </div>
+    <div class="grid2">
+      <div class="card">
+        <b>Живые механики</b>
+        <ul class="clean">
+          <li>Бегущая строка срочных новостей с паузой при наведении</li>
+          <li>«Лента обновлений»: новые записи добавляются, время идёт, отметка «Обновлено»</li>
+          <li>Счётчики «сейчас читают» и «осталось N минут»</li>
+          <li>Опрос недели с анимацией результатов</li>
+        </ul>
+      </div>
+      <div class="card">
+        <b>Современные блоки</b>
+        <ul class="clean">
+          <li>Переключаемые по разделам подборки (Главное / Экономика / Технологии / Город / Культура)</li>
+          <li>Мультимедиа: видео и подкасты с длительностью</li>
+          <li>«Для вас» с памятью прочитанного и сбросом</li>
+          <li>Тёмная тема всей страницы</li>
+        </ul>
+      </div>
+      <div class="card">
+        <b>Анимация с уважением к чтению</b>
+        <ul class="clean">
+          <li>Мягкое появление блоков при прокрутке (IntersectionObserver, стаггер)</li>
+          <li>Сжатие шапки при скролле с размытием фона</li>
+          <li>Зум изображения и подъём карточки на наведении</li>
+          <li>Анимированные стрелки ссылок и подчёркивания</li>
+          <li>Отключение всех анимаций при <span class="num">prefers-reduced-motion</span></li>
+        </ul>
+      </div>
+      <div class="card">
+        <b>Редакционная фотография</b>
+        <ul class="clean">
+          <li>Настоящие фотографии вместо серых заглушек: главный материал, «Сильные материалы недели», «Главные новости», обзоры, лента мероприятий, «Читайте также», медиаплитки, фон спецпроекта</li>
+          <li>Подписи и авторство снимков у главного фото и в статье — часть работы с доверием (62% аудитории боятся фейков)</li>
+          <li>Фото расставлены выборочно: короткие рубричные карточки остаются текстовыми, чтобы лента не выглядела контент-фермой</li>
+        </ul>
+      </div>
+      <div class="card">
+        <b>Премиальная подача</b>
+        <ul class="clean">
+          <li>Серифная типографика заголовков, один системный без засечек для текста</li>
+          <li>Три акцентных цвета вместо радуги, волосяные линии вместо рамок и теней</li>
+          <li>Погода, курсы и дата в служебной полосе — «портал, которым пользуются ежедневно»</li>
+          <li>Соответствие ТЗ сохранено: рекламные зоны AD-1…AD-13, календарь, обзоры, админка</li>
+        </ul>
+      </div>
+    </div>
+    <div class="note" style="margin-top:22px"><b>Как проверять:</b> откройте прототип, включите режим «Телефон» (больше половины аудитории придёт с мобильного), нажмите «Разметка рекламы», пролистайте главную — блоки появятся с анимацией, лента обновлений обновится, часы и счётчики пойдут. Затем откройте тёмную тему в служебной полосе.</div>
+  </div>
+</section>
+
+<footer id="src">
+  <div class="wrap">
+    <h3 style="margin-bottom:14px">Источники</h3>
+    <ol>
+      <li>Similarweb. Top News &amp; Media Publishers Websites Ranking, август 2026 — <a href="https://www.similarweb.com/top-websites/news-and-media/">similarweb.com/top-websites/news-and-media</a></li>
+      <li>Press Gazette. World’s biggest news websites: Japan and Brazil sites top ranking (Similarweb data), июль 2025 — <a href="https://pressgazette.co.uk/media-audience-and-business-data/media_metrics/biggest-news-websites-in-the-world/">pressgazette.co.uk</a></li>
+      <li>Similarweb. Top News &amp; Media Websites Ranking in Russia, май 2026 — <a href="https://www.similarweb.com/ru/top-websites/russian-federation/news-and-media/">similarweb.com/ru</a></li>
+      <li>Similarweb. Top Websites Ranking in Russia, июль 2026 — <a href="https://www.similarweb.com/ru/top-websites/russian-federation/">similarweb.com/ru</a></li>
+      <li>IaaS SaaS PaaS. ТОП-20 самых популярных сайтов России: сводка Similarweb, Semrush, Mediascope, ноябрь 2025 / декабрь 2024 — <a href="https://iaassaaspaas.ru/rating/krupnejshie-sayty-rossii">iaassaaspaas.ru</a></li>
+      <li>Reuters Institute for the Study of Journalism. Digital News Report 2025: Overview and key findings — <a href="https://reutersinstitute.politics.ox.ac.uk/digital-news-report/2025/dnr-executive-summary">reutersinstitute.politics.ox.ac.uk</a></li>
+      <li>Reuters Institute. Digital News Report 2026: trust at record low, social and video platforms overtake news websites — <a href="https://lab.imedd.org/en/reuters-institute-trust-in-news-is-at-a-record-low-with-access-dominated-by-platforms/">обзор iMEdD Lab</a></li>
+      <li>Pew Research Center. News Platform Fact Sheet, 2025–2026 — <a href="https://www.pewresearch.org/journalism/fact-sheet/news-platform-fact-sheet/">pewresearch.org</a></li>
+      <li>StatCounter / сводка Mobile vs Desktop Usage Statistics, 2025 — <a href="https://www.innersparkcreative.com/news/mobile-vs-desktop-usage-statistics-2025-verified">innersparkcreative.com</a></li>
+      <li>Google — исследования скорости мобильных страниц (сводка): 53% уходят после 3 с, +32% и +90% к отказам, +70% к сессии — <a href="https://migratelab.com/resources/page-speed-affects-conversion-rates-research">migratelab.com</a>, <a href="https://websitespeedy.com/blog/why-53-of-mobile-users-abandon-sites-that-take-over-3-seconds-to-load/">websitespeedy.com</a></li>
+      <li>Page Load Time Impact 2025 (BBC: −10% аудитории за секунду; Rakuten, Vodafone, Economic Times) — <a href="https://ighenatt.es/en/resources/velocidad-web/tiempo-carga-conversion/">ighenatt.es</a>, <a href="https://edmondscommerce.co.uk/research/performance/load-time-impact/">edmondscommerce.co.uk</a></li>
+      <li>Playwire. Ad Density Best Practices for News Websites (плотность 15–20% / 20–28%, видимость против количества) — <a href="https://www.playwire.com/blog/ad-density-best-practices-for-news-websites-balancing-revenue-and-reader-experience">playwire.com</a></li>
+      <li>Playwire. Bounce Rate benchmarks для издателей — <a href="https://www.playwire.com/blog/bounce-rate-the-classic-metric-that-still-impacts-your-ad-revenue">playwire.com</a></li>
+      <li>Society for News Design. DIE ZEIT, Weekendavisen и The New York Times — World’s Best Designed, 2024 — <a href="https://snd.org/die-zeit-weekendavisen-and-the-new-york-times-named-worlds-best-designed/">snd.org</a></li>
+      <li>Sostav.ru. Дизайн «Ленты.ру» признан лучшим в мире (Society for News Design) — <a href="https://www.sostav.ru/publication/dizajn-lenty-ru-priznan-luchshim-v-mire-1784.html">sostav.ru</a></li>
+      <li>Вестник Московского университета. Влияние веб-аналитики на редакционные процессы (кейс РБК) — <a href="https://vestnik.journ.msu.ru/books/2019/1/vliyanie-vnedreniya-instrumentov-veb-analitiki-na-redaktsionnye-protsessy-na-primere-analiza-raboty-/">vestnik.journ.msu.ru</a></li>
+      <li>The Audiencers. Как издатели строят отношения с читателями (NYT, FT, The Times: 11× и 46× вовлечение в комментариях) — <a href="https://theaudiencers.com/steal-this-strategy-examples-of-publishers-building-relationships-with-readers-and-how-to-replicate-them/">theaudiencers.com</a></li>
+      <li>INMA. 5 proven strategies to deepen audience engagement (рассылки как драйвер привычки) — <a href="https://www.inma.org/blogs/newsroom-initiative/post.cfm/5-proven-strategies-to-deepen-audience-engagement">inma.org</a></li>
+    </ol>
+    <p class="src" style="margin-top:18px">Отчёт подготовлен для проекта «ФОКУС» и синхронизирован с техническим заданием (дизайн + WordPress). Числовые оценки трафика — оценочные данные сервисов веб-аналитики и могут отличаться от внутренней статистики изданий.</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var links=[].slice.call(document.querySelectorAll('.toc a'));
+  var sections=links.map(function(a){return document.querySelector(a.getAttribute('href'));});
+  function onScroll(){
+    var y=window.scrollY+140, idx=0;
+    sections.forEach(function(s,i){ if(s && s.offsetTop<=y) idx=i; });
+    links.forEach(function(a,i){ a.classList.toggle('on', i===idx); });
+  }
+  window.addEventListener('scroll',onScroll,{passive:true}); onScroll();
+})();
+</script>
+</body>
+</html>

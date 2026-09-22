@@ -1,0 +1,835 @@
+<!-- ============ ЭКРАН 8. МАТРИЦА СООТВЕТСТВИЯ ТЗ ============ -->
+<section class="screen" id="scr-check">
+<style>
+.chk2{width:100%;border-collapse:collapse;font-size:15px}
+.chk2 th,.chk2 td{padding:12px 14px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top;line-height:1.5}
+.chk2 th{background:var(--tint);font:600 13px/1.4 var(--sans);letter-spacing:.04em;text-transform:uppercase;color:var(--sec)}
+.chk2 tr:last-child td{border-bottom:0}
+.chk2 td:first-child{color:var(--ink-2)}
+.chk2wrap{border:1px solid var(--line);border-top:2px solid var(--ink);overflow:auto}
+.b-yes,.b-part,.b-go{display:inline-flex;align-items:center;gap:6px;padding:3px 9px;border-radius:2px;font:600 12px/1.5 var(--sans);white-space:nowrap}
+.b-yes{background:var(--ok-soft);color:var(--ok)}
+.b-part{background:var(--amber-soft);color:var(--amber)}
+.b-go{background:var(--blue-soft);color:var(--blue-d)}
+</style>
+  <div class="hd" data-header="Главная"></div>
+  <div class="wrap sec sec--first">
+    <div class="sec__head">
+      <div>
+        <p class="kicker">Проверка: ничего из ТЗ не потерялось</p>
+        <h1 style="font-size:38px">Матрица соответствия требованиям</h1>
+        <p style="margin-top:10px;max-width:800px;font-size:17px">Слева — пункт технического задания, справа — где он реализован в прототипе. Тумблер «Разметка рекламы» в верхней панели показывает все рекламные зоны и нативные блоки.</p>
+      </div>
+    </div>
+
+    <div class="sec__head mt24"><div><h2>ТЗ для дизайнера</h2><p>Разделы «Общее настроение», «Главная», «Статьи», «Реклама», «Элементы», «Адаптив»</p></div></div>
+    <div class="chk2wrap">
+      <table class="chk2">
+        <tr><th style="width:34%">Требование</th><th style="width:16%">Статус</th><th>Где смотреть в прототипе</th></tr>
+        <tr><td>Спокойные «читабельные» цвета: светлый фон, тёмный текст, минимум пёстрых оттенков</td><td><span class="b-yes">Учтено</span></td><td>UI-кит → «Цветовая палитра»: фон #FBFAF8, текст #0D1A26 (контраст 15,9:1), акценты — приглушённые синий, винный и терракотовый</td></tr>
+        <tr><td>Крупный простой шрифт, читается на маленьком экране</td><td><span class="b-yes">Учтено</span></td><td>UI-кит → «Типографика»: серифные заголовки (H1 46 px, на телефоне 31 px) и крупный текстовый 17–19 px</td></tr>
+        <tr><td>Много «воздуха» между абзацами и блоками</td><td><span class="b-yes">Учтено</span></td><td>UI-кит → «Ритм»: абзац 24 px, блок 44 px, шкала 4/8/12/16/24/32/44/64; ширина колонки 740 px</td></tr>
+        <tr><td>Первый экран: заголовок, календарь событий, поиск, 3–4 крупные карточки</td><td><span class="b-yes">Учтено</span></td><td>Главная → полоса срочных новостей, главный материал дня, рельс «Главное сейчас» + календарь справа, ниже 4 сильные карточки</td></tr>
+        <tr><td>Разделы/рубрики как кнопки или плитки</td><td><span class="b-yes">Учтено</span></td><td>Главная → «Рубрики»: 6 плиток со счётчиками на волосяных линиях</td></tr>
+        <tr><td>Короткая афиша (рекомендация), главные новости, лента мероприятий с кратким описанием и подробным при открытии</td><td><span class="b-yes">Учтено</span></td><td>Главная → «Что стоит увидеть на этой неделе», «Главные новости», «Лента мероприятий» (кнопка «Подробнее»)</td></tr>
+        <tr><td>Статья: сверху заголовок, дата, описание; абзацы короткие; подзаголовки каждые 3–5 абзацев; в конце «Читайте также» на 3–4 статьи</td><td><span class="b-yes">Учтено</span></td><td>Экран «Статья»: автор и метаданные под лидом, буквица, 5 подзаголовков, врезная цитата, финальный блок из 4 карточек</td></tr>
+        <tr><td>Реклама: нейтральные прямоугольники с тонкой рамкой, без «вклейки», не поверх картинок, с отступами</td><td><span class="b-yes">Учтено</span></td><td>Тумблер «Разметка рекламы»: зоны AD-1…AD-13 с форматами и правилами</td></tr>
+        <tr><td>На телефоне реклама не должна занимать весь экран</td><td><span class="b-yes">Учтено</span></td><td>Режим «Телефон» + разметка: баннеры 100–113 px, сайдбарные блоки ≤ 190 px</td></tr>
+        <tr><td>Кнопки «Поделиться» — маленькие неяркие иконки</td><td><span class="b-yes">Учтено</span></td><td>Статья: серые квадратные иконки у фото, в конце текста и в боковом рельсе (≥ 1180 px)</td></tr>
+        <tr><td>Поиск — крупная строка с кнопкой, видна сразу</td><td><span class="b-yes">Учтено</span></td><td>Шапка портала (крупная строка в «шапке-шапке») + отдельный поиск на первом экране; на телефоне — первым блоком меню</td></tr>
+        <tr><td>Меню: на компьютере — горизонтальное по ширине, на телефоне — открывающийся столбец</td><td><span class="b-yes">Учтено</span></td><td>Шапка: 6 пунктов по ширине страницы, активный — с винной линией; на телефоне бургер и колонка со поиском и CTA</td></tr>
+        <tr><td>Адаптив: контент + реклама сбоку или снизу, элементы по центру, крупные кнопки</td><td><span class="b-yes">Учтено</span></td><td>Переключатель «Компьютер / Планшет / Телефон»; сайдбар уезжает под контент, кнопки 50–56 px</td></tr>
+        <tr><td>Все картинки автоматически становятся нужного размера и не вылезают за края</td><td><span class="b-yes">Учтено</span></td><td>Все изображения — контейнеры с пропорциями 16:9 / 4:3 / 1:1 и обрезкой; проверено на 390 / 834 / 1280 px</td></tr>
+        <tr><td>Макет главной страницы (компьютер + телефон)</td><td><span class="b-yes">Учтено</span></td><td>Экран «Главная» в трёх режимах + PNG-макеты в папке <code>makety/</code></td></tr>
+        <tr><td>Макет страницы статьи (компьютер + телефон) — обязательно с разметкой мест под рекламу</td><td><span class="b-yes">Учтено</span></td><td>Экран «Статья»: AD-5 внутри текста, AD-6 в колонке, AD-7 внизу сайдбара, AD-8 после «Читайте также»</td></tr>
+        <tr><td>Набор элементов: кнопки, иконки, поля форм, типографика, цветовая палитра</td><td><span class="b-yes">Учтено</span></td><td>Экран «UI-кит»</td></tr>
+      </table>
+    </div>
+
+    <div class="sec__head mt32"><div><h2>ТЗ на сайт под WordPress</h2><p>Разделы 1–6 технического задания</p></div></div>
+    <div class="chk2wrap">
+      <table class="chk2">
+        <tr><th style="width:34%">Требование</th><th style="width:16%">Статус</th><th>Реализация / где смотреть</th></tr>
+        <tr><td>Тип проекта: информационный сайт (новости + календарь + мероприятия + обзоры + полезное)</td><td><span class="b-yes">Учтено</span></td><td>Главная + «Каталог и обзоры» + «Календарь»; карта типов записей — на экране «WP: реализация»</td></tr>
+        <tr><td>ЦА 20–60 лет, сценарии «поиск ответа», «подписка ради пользы», «переход по рекомендации»</td><td><span class="b-yes">Учтено</span></td><td>Поиск в шапке и на первом экране, блоки подписки (главная, статья, календарь), нативные рекомендации с отслеживанием кликов</td></tr>
+        <tr><td>Новости: лента, фильтры по категориям и тегам, архив, срочные материалы, превью, дата, автор, просмотры</td><td><span class="b-yes">Учтено</span></td><td>Полоса «Срочно», лента обновлений с отметками «Обновлено», главные новости; фильтры и сортировки — «Каталог»</td></tr>
+        <tr><td>Календарь: интерактивный, фильтры по типу, локации, датам; карточки с описанием, местом, временем; «Напомнить» (email/push); экспорт в календарь</td><td><span class="b-yes">Учтено</span></td><td>Экран «Календарь»: рабочие фильтры, выбор дня, кнопки «Напомнить», «В календарь» (.ics), «Поделиться»</td></tr>
+        <tr><td>Каталог статей: рубрикатор, фильтры по темам, дате, популярности; рейтинг, комментарии, соцкнопки</td><td><span class="b-yes">Учтено</span></td><td>Экран «Каталог и обзоры»: сортировки, фильтры, рубрикатор, рейтинг и число отзывов в карточке</td></tr>
+        <tr><td>Обзоры: рейтинги, сравнительные таблицы, «Плюсы/Минусы», карточки товаров с партнёрскими ссылками</td><td><span class="b-yes">Учтено</span></td><td>Каталог → блок «Как выглядит тип публикации «Обзор»»: рейтинг 4,6, таблица, плюсы/минусы, товары со ссылками</td></tr>
+        <tr><td>Блоги (на перспективу): профили авторов, подписка на автора, рейтинг</td><td><span class="b-go">Перспектива</span></td><td>Карточка автора под статьёй и в карточках колонок; техплан — на экране «WP: реализация»</td></tr>
+        <tr><td>Форум (на перспективу): разделы, треды, модерация, репутация, поиск, уведомления</td><td><span class="b-go">Перспектива</span></td><td>Блок комментариев статьи как задел; решение (bbPress / wpForo) — на экране «WP: реализация»</td></tr>
+        <tr><td>Читатель: статья без лишних скриптов, быстро загружается</td><td><span class="b-yes">Учтено</span></td><td>Требования к скорости: LCP &lt; 2,5 с, вес &lt; 1,5 МБ, асинхронная реклама — экран «WP: реализация»</td></tr>
+        <tr><td>Редактор: добавление статей из админки — заголовок, slug, мета-теги, теги, рубрика, автор, статус, дата</td><td><span class="b-yes">Учтено</span></td><td>Экран «Админка» → таблица «Статьи»: slug, рубрика, автор, статус, дата, предпросмотр</td></tr>
+        <tr><td>Администратор/маркетолог: пользователи и роли, статистика просмотров, управление рекламными блоками</td><td><span class="b-yes">Учтено</span></td><td>«Админка»: KPI, график по дням, таблица рекламных зон с тумблерами и CTR</td></tr>
+        <tr><td>Нативные блоки с рекомендациями и партнёрскими ссылками, отслеживание кликов</td><td><span class="b-yes">Учтено</span></td><td>Нативные блоки на главной, в статье и в каталоге (метка «реклама», data-track); KPI «клики по нативным блокам»</td></tr>
+        <tr><td>Владелец: экспорт статей в JSON/CSV, бэкапы БД по расписанию, логирование действий</td><td><span class="b-yes">Учтено</span></td><td>«Админка» → «Инструменты»: экспорт JSON/CSV, бэкап в 03:00, журнал действий</td></tr>
+        <tr><td>Админ-панель: авторизация, роли админ/редактор, CRUD, предпросмотр, блокировка пользователей</td><td><span class="b-yes">Учтено</span></td><td>«Админка»: роли, статусы, тумблеры доступа, журнал, вход по логину и паролю</td></tr>
+        <tr><td>Настройки: заголовок сайта, описание, favicon, цвета и шрифты, рекламные блоки</td><td><span class="b-part">Частично</span></td><td>Раздел «Настройки сайта» в меню админки; палитра и типографика — в UI-ките (в WP это поля настроек темы)</td></tr>
+        <tr><td>Аналитика: просмотры по дням, клики по нативным блокам, источники трафика (базово)</td><td><span class="b-yes">Учтено</span></td><td>«Админка» → график по дням, KPI, таблица источников трафика</td></tr>
+        <tr><td>Интеграции: Яндекс Метрика, Google Analytics, Яндекс Вебмастер, Google Search Console, разметка под рекламные системы</td><td><span class="b-go">Техзадача</span></td><td>Экран «WP: реализация» → «Карта решений» и «Три опоры»; рекламные зоны размечены как AD-1…AD-13</td></tr>
+        <tr><td>Быстрый, безопасный, SEO-дружелюбный сайт с масштабированием под трафик и монетизацию</td><td><span class="b-go">Техзадача</span></td><td>«WP: реализация» → «Скорость», «SEO», «Безопасность» и этапы внедрения</td></tr>
+      </table>
+    </div>
+
+    <div class="sec__head mt32"><div><h2>Сверх ТЗ: премиальный слой</h2><p>Доработки по итогам аналитики топ-порталов мира и России (отчёт: report.html)</p></div></div>
+    <div class="g g3">
+      <div class="aside__box"><h3>Живые механики</h3><p style="margin:0;font:400 15px/1.55 var(--sans);color:var(--body)">Бегущая строка срочных новостей с паузой при наведении, лента обновлений, в которую добавляются записи с новым временем, счётчики просмотров и «сейчас читают», опрос недели с результатами по клику. Данные для админки: просмотры, явка, клики.</p></div>
+      <div class="aside__box"><h3>Современные блоки</h3><p style="margin:0;font:400 15px/1.55 var(--sans);color:var(--body)">Видео и подкасты с длительностью, блок «Для вас» с памятью прочитанного и переключением интересов, «Что обсуждают читатели», служебная полоса с погодой и курсами, отметка «обновлено» в статье, фото с подписью и авторством.</p></div>
+      <div class="aside__box"><h3>Анимация без вреда чтению</h3><p style="margin:0;font:400 15px/1.55 var(--sans);color:var(--body)">Появление блоков при прокрутке со стаггером, подъём карточки и блик по фотографии при наведении, анимированное подчёркивание заголовков, липкая шапка со сжатием, прогресс чтения и «осталось N мин». Всё отключается при prefers-reduced-motion.</p></div>
+    </div>
+    <div class="g g2 mt24">
+      <div class="aside__box"><h3>Тёмная тема</h3><p style="margin:0;font:400 15px/1.55 var(--sans);color:var(--body)">Отдельная палитра для читательских экранов (главная, статья, календарь, каталог): переключатель в служебной полосе, выбор сохраняется в браузере. Админка и UI-кит остаются светлыми — там важны точные цвета интерфейса.</p></div>
+      <div class="aside__box"><h3>Из отчёта в интерфейс</h3><p style="margin:0;font:400 15px/1.55 var(--sans);color:var(--body)">Каждое решение привязано к данным: скорость и LCP, плотность рекламы 15–20% на главной и 20–28% в статье, рекомендации в конце текста, автор и доверие, рассылки, мультимедиа. Источники и таблицы — в отчёте: Similarweb, Reuters Institute DNR, Pew Research, Google, Mediascope.</p></div>
+    </div>
+    <div class="sec__head mt32"><div><h2>Что дальше по проекту</h2><p>Предложение по следующему шагу</p></div></div>
+    <div class="g g3">
+      <div class="aside__box"><h3>1. Согласовать прототип</h3><p style="margin:0;font:400 15px/1.55 var(--sans);color:var(--body)">Проверить блоки, порядок и плотность. Отметить, чего не хватает: разделы, темы, тексты, названия.</p></div>
+      <div class="aside__box"><h3>2. Собрать макеты</h3><p style="margin:0;font:400 15px/1.55 var(--sans);color:var(--body)">На базе UI-кита — макеты главной, статьи, календаря в Figma для компьютера и телефона, со всеми состояниями.</p></div>
+      <div class="aside__box"><h3>3. Вёрстка и WordPress</h3><p style="margin:0;font:400 15px/1.55 var(--sans);color:var(--body)">Тема на блочных шаблонах, типы записей, админка, рекламные зоны, аналитика и бэкапы — по этапам из раздела «WP».</p></div>
+    </div>
+  </div>
+  <footer class="ft" data-footer></footer>
+</section>
+
+      </div><!-- /.site -->
+    </div><!-- /.device -->
+  </div><!-- /.stage -->
+</main>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="21" y2="21"/></symbol>
+  <symbol id="i-calendar" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><line x1="3" y1="10" x2="21" y2="10"/><line x1="8" y1="3" x2="8" y2="7"/><line x1="16" y1="3" x2="16" y2="7"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><polyline points="12,7 12,12 16,14"/></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s6.5-5.6 6.5-10.5a6.5 6.5 0 1 0-13 0C5.5 15.4 12 21 12 21z"/><circle cx="12" cy="10.5" r="2.3"/></symbol>
+  <symbol id="i-eye" viewBox="0 0 24 24"><path d="M2 12s3.7-6.2 10-6.2S22 12 22 12s-3.7 6.2-10 6.2S2 12 2 12z"/><circle cx="12" cy="12" r="2.6"/></symbol>
+  <symbol id="i-comment" viewBox="0 0 24 24"><path d="M21 12a8 8 0 0 1-8 8H8l-5 3 1.4-4.6A8 8 0 1 1 21 12z"/></symbol>
+  <symbol id="i-share" viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.6" y1="10.6" x2="15.4" y2="6.4"/><line x1="8.6" y1="13.4" x2="15.4" y2="17.6"/></symbol>
+  <symbol id="i-vk" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="3"/><text x="12" y="15.5" text-anchor="middle" font-size="9" font-weight="700" font-family="sans-serif" fill="currentColor" stroke="none">VK</text></symbol>
+  <symbol id="i-whatsapp" viewBox="0 0 24 24"><path d="M21 12a9 9 0 0 1-13.3 8L3 21l1.1-4.5A9 9 0 1 1 21 12z"/><path d="M8.6 9.4c0 3 2.3 5.3 5.3 5.3.6 0 1.1-.5 1.1-1.1 0-.3-.6-.8-1-1-.3-.2-.5-.1-.7.1l-.4.4c-1-.4-1.8-1.2-2.2-2.2l.4-.4c.2-.2.3-.4.1-.7-.2-.3-.7-1-1-1-.5 0-1.1.6-1.1 1.1z"/></symbol>
+  <symbol id="i-link" viewBox="0 0 24 24"><path d="M10.5 13.5a4 4 0 0 0 5.7 0l2.6-2.6a4 4 0 0 0-5.7-5.7l-1.3 1.3"/><path d="M13.5 10.5a4 4 0 0 0-5.7 0l-2.6 2.6a4 4 0 0 0 5.7 5.7l1.3-1.3"/></symbol>
+  <symbol id="i-bookmark" viewBox="0 0 24 24"><path d="M7 4h10v16.5l-5-3.6-5 3.6z"/></symbol>
+  <symbol id="i-star" viewBox="0 0 24 24"><path d="M12 3.6l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17.6l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/></symbol>
+  <symbol id="i-starfill" viewBox="0 0 24 24"><path d="M12 3.6l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17.6l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z" fill="currentColor" stroke="none"/></symbol>
+  <symbol id="i-starhalf" viewBox="0 0 24 24"><path d="M12 3.6l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17.6l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/><path d="M12 3.6v14L6.6 20.5l1-6.1-4.4-4.3 6.1-.9z" fill="currentColor" stroke="none"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></symbol>
+  <symbol id="i-minus" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><polyline points="4,12.5 9.5,18 20,6"/></symbol>
+  <symbol id="i-zap" viewBox="0 0 24 24"><polygon points="13,2 4,14 11,14 10,22 20,10 12.5,10"/></symbol>
+  <symbol id="i-bolt" viewBox="0 0 24 24"><polygon points="13,2 4,14 11,14 10,22 20,10 12.5,10"/></symbol>
+  <symbol id="i-arrow-right" viewBox="0 0 24 24"><line x1="4" y1="12" x2="19" y2="12"/><polyline points="13,6 19,12 13,18"/></symbol>
+  <symbol id="i-arrow-up" viewBox="0 0 24 24"><line x1="12" y1="20" x2="12" y2="5"/><polyline points="6,11 12,5 18,11"/></symbol>
+  <symbol id="i-rss" viewBox="0 0 24 24"><line x1="5" y1="19" x2="5.2" y2="19"/><path d="M5 13a6 6 0 0 1 6 6"/><path d="M5 8a11 11 0 0 1 11 11"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><polyline points="3.5,7 12,13 20.5,7"/></symbol>
+  <symbol id="i-ad" viewBox="0 0 24 24"><path d="M4 11v3l12 4V7L4 11z"/><path d="M16 9.5a4 4 0 0 1 0 6.5"/><line x1="8" y1="15" x2="8" y2="19.5"/></symbol>
+  <symbol id="i-handshake" viewBox="0 0 24 24"><circle cx="9" cy="12" r="5"/><circle cx="15" cy="12" r="5"/></symbol>
+  <symbol id="i-review" viewBox="0 0 24 24"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M12 8.6l1.1 2.3 2.5.3-1.8 1.8.4 2.5-2.2-1.2-2.2 1.2.4-2.5-1.8-1.8 2.5-.3z"/></symbol>
+  <symbol id="i-book" viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="18" rx="2"/><line x1="9" y1="3" x2="9" y2="21"/></symbol>
+  <symbol id="i-news" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><line x1="6.5" y1="9" x2="12" y2="9"/><line x1="6.5" y1="12.5" x2="11" y2="12.5"/><line x1="6.5" y1="16" x2="10" y2="16"/><line x1="14.5" y1="9" x2="17.5" y2="9"/><line x1="14.5" y1="12.5" x2="17.5" y2="12.5"/></symbol>
+  <symbol id="i-bell" viewBox="0 0 24 24"><path d="M18 16.5H6l1.6-2.6V10a4.4 4.4 0 0 1 8.8 0v3.9z"/><path d="M10 19.4a2 2 0 0 0 4 0"/></symbol>
+  <symbol id="i-download" viewBox="0 0 24 24"><line x1="12" y1="4" x2="12" y2="15"/><polyline points="8,11 12,15 16,11"/><path d="M5 20h14"/></symbol>
+  <symbol id="i-export" viewBox="0 0 24 24"><path d="M15 4h5v5"/><path d="M20 4l-8 8"/><path d="M19 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h5"/></symbol>
+  <symbol id="i-db" viewBox="0 0 24 24"><ellipse cx="12" cy="6" rx="7" ry="3"/><path d="M5 6v12c0 1.7 3.1 3 7 3s7-1.3 7-3V6"/><path d="M5 12c0 1.7 3.1 3 7 3s7-1.3 7-3"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3l7 3v6c0 4.4-3 7.6-7 9-4-1.4-7-4.6-7-9V6z"/></symbol>
+  <symbol id="i-warn" viewBox="0 0 24 24"><path d="M12 4l9 16H3z"/><line x1="12" y1="9.5" x2="12" y2="14"/><line x1="12" y1="16.6" x2="12" y2="17.2"/></symbol>
+  <symbol id="i-chart" viewBox="0 0 24 24"><line x1="5" y1="20" x2="5" y2="12"/><line x1="12" y1="20" x2="12" y2="5"/><line x1="19" y1="20" x2="19" y2="14"/><line x1="3" y1="20.5" x2="21" y2="20.5"/></symbol>
+  <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4.5 20.5c0-4 3.4-6.2 7.5-6.2s7.5 2.2 7.5 6.2"/></symbol>
+  <symbol id="i-gear" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3.2"/><path d="M12 3v2.4M12 18.6V21M3 12h2.4M18.6 12H21M5.6 5.6l1.7 1.7M16.7 16.7l1.7 1.7M18.4 5.6l-1.7 1.7M7.3 16.7l-1.7 1.7"/></symbol>
+  <symbol id="i-list" viewBox="0 0 24 24"><line x1="8.5" y1="7" x2="20" y2="7"/><line x1="8.5" y1="12" x2="20" y2="12"/><line x1="8.5" y1="17" x2="20" y2="17"/><line x1="4" y1="7" x2="4.6" y2="7"/><line x1="4" y1="12" x2="4.6" y2="12"/><line x1="4" y1="17" x2="4.6" y2="17"/></symbol>
+  <symbol id="i-menu" viewBox="0 0 24 24"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></symbol>
+  <symbol id="i-close" viewBox="0 0 24 24"><line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/></symbol>
+  <symbol id="i-chevron-left" viewBox="0 0 24 24"><polyline points="14,6 8,12 14,18"/></symbol>
+  <symbol id="i-chevron-right" viewBox="0 0 24 24"><polyline points="10,6 16,12 10,18"/></symbol>
+  <symbol id="i-filter" viewBox="0 0 24 24"><path d="M3.5 5h17l-6.5 8v6l-4-2v-4z"/></symbol>
+  <symbol id="i-fire" viewBox="0 0 24 24"><path d="M12 3s5 4.3 5 8.7A5 5 0 0 1 7 12c0-2 1.2-3 1.2-3S9 6.5 12 3z"/><path d="M12 20a3 3 0 0 0 3-3c0-1.6-3-4-3-4s-3 2.4-3 4a3 3 0 0 0 3 3z"/></symbol>
+</svg>
+
+<script>
+(function(){
+  'use strict';
+
+  /* ---------------- ИКОНКИ ---------------- */
+  var NS='http://www.w3.org/2000/svg';
+  function mountIcons(root){
+    (root||document).querySelectorAll('[data-ic]:not([data-ic-done])').forEach(function(el){
+      var svg=document.createElementNS(NS,'svg');
+      svg.setAttribute('class','ic '+(el.getAttribute('class')||''));
+      svg.setAttribute('aria-hidden','true');
+      var use=document.createElementNS(NS,'use');
+      use.setAttributeNS('http://www.w3.org/1999/xlink','href','#i-'+el.getAttribute('data-ic'));
+      use.setAttribute('href','#i-'+el.getAttribute('data-ic'));
+      svg.appendChild(use);
+      el.setAttribute('data-ic-done','1');
+      el.parentNode.replaceChild(svg,el);
+    });
+  }
+
+  /* ---------------- ДАННЫЕ СОБЫТИЙ ---------------- */
+  /* фото для карточек мероприятий: соответствуют порядку EVENTS */
+  var EVIMG=['bills','music','mara','food','food','lect','music','light','skate','lect','food'];
+  var EVENTS=[
+    {iso:'2026-09-22',d:'22',mon:'сент',weekday:'вторник',time:'19:30',type:'Лекция',place:'Центр «Точка»',district:'Центр',addr:'ул. Садовая, 14',free:true,price:'Бесплатно, по регистрации',dur:'1,5 часа',forAud:'Взрослым, 18+',
+     t:'Личный бюджет: 5 привычек, которые экономят 20 000 ₽ в год',
+     short:'Разбираем простые правила учёта денег и считаем экономию на примере реальной семьи.',
+     full:'Лекция о личных финансах без сложных терминов: как вести учёт за 10 минут в неделю, где чаще всего «утекают» деньги, как настроить автоматические накопления и какие категории расходов дают максимальную экономию. В конце — разбор вопросов зала и шаблон таблицы для учёта, который можно забрать с собой.'},
+    {iso:'2026-09-24',d:'24',mon:'сент',weekday:'четверг',time:'20:00',type:'Музыка',place:'Клуб «Пульс»',district:'Центр',addr:'пер. Кузнечный, 3',free:false,price:'1 200 ₽',dur:'3 часа',forAud:'18+',
+     t:'Ночь инди-музыки: три группы за один вечер',
+     short:'Локальные коллективы, новый альбом одной из групп и винил-маркет в фойе.',
+     full:'Три состава играют по 45 минут: пост-панк из Заречья, дуэт с виолончелью и хедлайнер вечера с новым альбомом. В фойе работает винил-маркет, на входе — гардероб. Двери открываются в 19:00, первый сет начинается в 20:00. Билеты на входе дороже на 300 ₽.',
+     hot:true},
+    {iso:'2026-09-25',d:'25',mon:'сент',weekday:'пятница',time:'09:00',type:'Спорт',place:'Набережная',district:'Набережная',addr:'наб. Речная, у причала №4',free:true,price:'Бесплатно',dur:'1 час',forAud:'Всем уровням, 16+',
+     t:'Открытая тренировка: бег для начинающих',
+     short:'Часовая тренировка с тренером бегового клуба: техника, дыхание, разминка и заминка.',
+     full:'Тренировка рассчитана на тех, кто начинает бегать: разбираем постановку стопы, дыхание, темп и объём. Группа до 25 человек, тренер даёт индивидуальные подсказки. Нужны кроссовки и бутылка воды. Место сбора — у причала №4, при плохой погоде тренировка переносится в манеж.'},
+    {iso:'2026-09-26',d:'26',mon:'сент',weekday:'суббота',time:'12:00 – 22:00',type:'Еда',place:'Парк «Набережная»',district:'Набережная',addr:'парк «Набережная», центральная аллея',free:true,price:'Бесплатный вход, еда от 300 ₽',dur:'Два дня',forAud:'Семейное, 0+',
+     t:'Фестиваль уличной еды: 40 фудкортов и маркет локальных продуктов',
+     short:'Два дня, 40 фудкортов, зона маркета, детская площадка и живая музыка по вечерам.',
+     full:'Сорок фудкортов из восьми городов, зона фермерского маркета, детская площадка и сцена с живыми выступлениями. Вход свободный, оплата на точках картой и наличными. В субботу вечером — выступление духового оркестра, в воскресенье — кулинарные мастер-классы каждые два часа. С собаками можно, на поводке.',
+     hot:true},
+    {iso:'2026-09-27',d:'27',mon:'сент',weekday:'воскресенье',time:'12:00 – 21:00',type:'Еда',place:'Парк «Набережная»',district:'Набережная',addr:'парк «Набережная», центральная аллея',free:true,price:'Бесплатный вход',dur:'Второй день',forAud:'Семейное, 0+',
+     t:'Фестиваль уличной еды: второй день и мастер-классы',
+     short:'Кулинарные мастер-классы, детская программа и финальный концерт фестиваля.',
+     full:'Второй день фестиваля: мастер-классы по уличной кухне каждые два часа, детская программа с аниматорами, ярмарка локальных продуктов. Финальный концерт начинается в 19:00 на главной сцене.'},
+    {iso:'2026-09-30',d:'30',mon:'сент',weekday:'среда',time:'19:00',type:'Лекция',place:'Библиотека №3',district:'Центр',addr:'ул. Почтовая, 7',free:true,price:'Бесплатно, по регистрации',dur:'1,5 часа',forAud:'16+',
+     t:'Лекция «Как читать научные новости»',
+     short:'Учимся отличать исследование от пресс-релиза и понимать, когда выводы преувеличены.',
+     full:'На примерах реальных новостей разбираем, как читать научные публикации: что такое выборка и контрольная группа, почему «учёные доказали» часто значит «в одной лаборатории предположили», как проверять первоисточник за две минуты. Лекция с практической частью: гости проверяют три новости самостоятельно.'},
+    {iso:'2026-10-01',d:'1',mon:'окт',weekday:'четверг',time:'19:00',type:'Музыка',place:'Филармония',district:'Центр',addr:'пл. Искусств, 1',free:false,price:'800–2 400 ₽',dur:'2 часа с антрактом',forAud:'12+',
+     t:'Органный вечер: Бах, Пярт, импровизация',
+     short:'Классическая программа и органная импровизация в финале вечера.',
+     full:'Программа из произведений Баха и Арво Пярта, во втором отделении — импровизация на заданные залом темы. Большой зал филармонии, свободная рассадка по секторам. Билеты от 800 ₽ на балкон, от 1 800 ₽ в партер.'},
+    {iso:'2026-10-03',d:'3',mon:'окт',weekday:'суббота',time:'11:00 – 21:00',type:'Выставка',place:'Манеж',district:'Центр',addr:'наб. Речная, 1 (Манеж)',free:false,price:'500 ₽, дети до 12 — бесплатно',dur:'До 15 ноября',forAud:'0+',
+     t:'Выставка «Свет и город»: 12 инсталляций',
+     short:'Световые инсталляции о городе: ночные маршруты, звук, интерактивные залы.',
+     full:'Двенадцать инсталляций молодых художников и студий света: зал с имитацией ночного маршрута трамвая, звуковая комната, зеркальный коридор и интерактивная стена, которая реагирует на движение. Проход по маршруту занимает около часа. Есть аудиогид по QR-коду и тихие часы по вторникам с 11:00 до 13:00.'},
+    {iso:'2026-10-04',d:'4',mon:'окт',weekday:'воскресенье',time:'10:00',type:'Спорт',place:'Парк «Заречный»',district:'Заречье',addr:'парк «Заречный», вход со стороны ул. Лесной',free:true,price:'Бесплатно',dur:'1,5 часа',forAud:'Все уровни, 14+',
+     t:'Открытая тренировка в Заречье: бег и ОФП',
+     short:'Кросс по парку и блок общей физической подготовки с тренером.',
+     full:'Собираемся у главного входа: 4 км кросса в комфортном темпе, затем 30 минут ОФП — техника бега, работа стопы, силовой блок. Форма одежды по погоде, вода обязательна. Участие бесплатное, предварительная запись не нужна.'},
+    {iso:'2026-10-07',d:'7',mon:'окт',weekday:'среда',time:'19:30',type:'Лекция',place:'Центр «Точка»',district:'Центр',addr:'ул. Садовая, 14',free:true,price:'Бесплатно',dur:'1,5 часа',forAud:'18+',
+     t:'Самозанятость и ИП: что выбрать в 2026 году',
+     short:'Считаем налоги, лимиты и риски на реальных примерах из фриланса и торговли.',
+     full:'Сравниваем режимы: самозанятость, ИП на упрощённой системе, патенты. Разбираем лимиты дохода, обязательные взносы, работу с маркетплейсами и что происходит при превышении лимита. Вторая часть — ответы на вопросы: как совмещать с работой по трудовому договору, что с чеками и как отчитываться.'},
+    {iso:'2026-10-10',d:'10',mon:'окт',weekday:'суббота',time:'09:00 – 15:00',type:'Еда',place:'Центральная площадь',district:'Центр',addr:'Центральная площадь, 1',free:true,price:'Бесплатный вход',dur:'6 часов',forAud:'Семейное, 0+',
+     t:'Маркет фермеров: сезонные продукты и сыры',
+     short:'Пятнадцать хозяйств, сезонные овощи, сыры, мёд и дегустации каждый час.',
+     full:'Пятнадцать хозяйств привозят сезонные овощи и фрукты, сыры, мёд, хлеб на закваске и растительные масла. Каждый час — дегустация у одной из точек. Оплата картой работает у большинства участников, у фермеров из дальних районов — наличными.'}
+  ];
+
+  function dateParts(iso){var p=iso.split('-');return {y:+p[0],m:+p[1]-1,d:+p[2]};}
+
+  /* ---------------- КАРТОЧКА СОБЫТИЯ ---------------- */
+  function evCard(e,i){
+    var priceTag=e.free?'<span class="tag tag--ok">Вход свободный</span>':'<span class="tag">'+e.price+'</span>';
+    var hot=e.hot?'<span class="tag tag--red" style="letter-spacing:.01em">Популярно</span>':'';
+    var ek=EVIMG[i]||'', eph=ek?('<span class="ev__ph"><span class="ph__bg im--'+ek+'" role="img" aria-label="'+e.type+'"></span></span>'):'';
+    return '<article class="ev" data-ev="'+i+'">'+ eph +
+      '<div class="ev__date"><span class="ev__d">'+e.d+'</span><span class="ev__m">'+e.mon+'</span></div>'+
+      '<div>'+
+        '<div class="row" style="gap:8px;margin-bottom:10px"><span class="tag tag--event">'+e.type+'</span>'+priceTag+hot+'</div>'+
+        '<h3 class="ev__t">'+e.t+'</h3>'+
+        '<p class="ev__dsc">'+e.short+'</p>'+
+        '<div class="meta" style="margin:0 0 14px;padding:0">'+
+          '<span><span class="ic--13" data-ic="calendar"></span>'+e.d+' '+e.mon+', '+e.weekday+'</span><span>·</span>'+
+          '<span><span class="ic--13" data-ic="clock"></span>'+e.time+'</span><span>·</span>'+
+          '<span><span class="ic--13" data-ic="pin"></span>'+e.place+' · '+e.district+'</span><span>·</span>'+
+          '<span><span class="ic--13" data-ic="eye"></span>'+(1200+i*370)+' смотрят</span>'+
+        '</div>'+
+        '<div class="row">'+
+          '<button class="btn btn--quiet btn--sm" type="button" data-exp="'+i+'"><span class="when-closed">Подробнее</span><span class="when-open" style="display:none">Свернуть</span> <span class="ic--16" data-ic="chevron-right"></span></button>'+
+          '<button class="btn btn--ghost btn--sm" type="button" data-remind="'+i+'"><span class="ic--16" data-ic="bell"></span><span class="rem-txt">Напомнить</span></button>'+
+          '<button class="btn btn--ghost btn--sm" type="button" data-ics="'+i+'"><span class="ic--16" data-ic="download"></span>В календарь</button>'+
+          '<button class="btn btn--ghost btn--icon" type="button" data-share="'+i+'" aria-label="Поделиться"><span class="ic--16" data-ic="share"></span></button>'+
+        '</div>'+
+        '<div class="detail"><p>'+e.full+'</p>'+
+        '<ul class="dl">'+
+          '<li><b>Место:</b>'+e.place+', '+e.district+'</li>'+
+          '<li><b>Адрес:</b>'+e.addr+'</li>'+
+          '<li><b>Начало:</b>'+e.d+' '+e.mon+' 2026, '+e.time+'</li>'+
+          '<li><b>Стоимость:</b>'+e.price+'</li>'+
+          '<li><b>Длительность:</b>'+e.dur+'</li>'+
+          '<li><b>Для кого:</b>'+e.forAud+'</li>'+
+        '</ul>'+
+        '<p class="lbl" style="margin:0">Напоминание приходит на e-mail за день и за час до начала. Кнопка «В календарь» скачивает файл .ics для Google, Apple и Яндекс Календаря.</p></div>'+
+      '</div></article>';
+  }
+
+  /* ---------------- КАЛЕНДАРЬ ---------------- */
+  var MONTHS=['Январь','Февраль','Март','Апрель','Май','Июнь','Июль','Август','Сентябрь','Октябрь','Ноябрь','Декабрь'];
+  var DOW=['пн','вт','ср','чт','пт','сб','вс'];
+  var calState={home:{y:2026,m:8,sel:null},page:{y:2026,m:8,sel:null}};
+
+  function eventsOn(y,m,d){return EVENTS.filter(function(e){var p=dateParts(e.iso);return p.y===y&&p.m===m&&p.d===d;});}
+  function eventsMonth(y,m){return EVENTS.filter(function(e){var p=dateParts(e.iso);return p.y===y&&p.m===m;});}
+
+  function renderCal(el){
+    var key=el.getAttribute('data-cal')||'home';
+    var st=calState[key];
+    var first=new Date(st.y,st.m,1);
+    var offset=(first.getDay()+6)%7;
+    var days=new Date(st.y,st.m+1,0).getDate();
+    var cells='';
+    DOW.forEach(function(d){cells+='<div class="cal__dow">'+d+'</div>';});
+    for(var i=0;i<offset;i++){cells+='<div></div>';}
+    for(var d=1;d<=days;d++){
+      var evs=eventsOn(st.y,st.m,d);
+      var cls='cal__d'+(evs.length?' has':'')+(st.sel===d?' is-sel':'');
+      cells+='<button class="'+cls+'" type="button" data-day="'+d+'" aria-label="'+d+' '+MONTHS[st.m].toLowerCase()+'">'+d+'</button>';
+    }
+    var month=eventsMonth(st.y,st.m);
+    var foot;
+    if(st.sel){
+      var dayEvs=eventsOn(st.y,st.m,st.sel);
+      if(dayEvs.length){
+        foot='<b>'+st.sel+' '+MONTHS[st.m].toLowerCase()+'</b> — '+dayEvs.length+' '+plural(dayEvs.length,['событие','события','событий'])+
+          '<ul class="cal__list">'+dayEvs.map(function(e){
+            return '<li><span class="ic--16" data-ic="clock" style="color:var(--amber);margin-top:2px"></span><span><b>'+e.time+'</b>'+e.t+'<br><span class="lbl">'+e.place+' · '+e.price+'</span></span></li>';
+          }).join('')+'</ul>'+
+          '<button class="btn btn--quiet btn--sm" type="button" data-dayshow="1" style="margin-top:12px">Показать события дня в списке</button>';
+      } else {
+        foot='<b>'+st.sel+' '+MONTHS[st.m].toLowerCase()+'</b> — событий нет. Выберите день с отметкой или посмотрите ленту ниже.';
+      }
+    } else {
+      foot='В этом месяце — <b>'+month.length+'</b> '+plural(month.length,['событие','события','событий'])+'. Дни с отметкой в сетке.';
+    }
+    el.innerHTML=
+      '<div class="cal__hd"><b>'+MONTHS[st.m]+' '+st.y+'</b>'+
+        '<span class="cal__nav">'+
+          '<button type="button" data-cnav="-1" aria-label="Предыдущий месяц"><span class="ic--16" data-ic="chevron-left"></span></button>'+
+          '<button type="button" data-cnav="1" aria-label="Следующий месяц"><span class="ic--16" data-ic="chevron-right"></span></button>'+
+        '</span></div>'+
+      '<div class="cal__grid">'+cells+'</div>'+
+      '<div class="cal__ft">'+foot+'</div>';
+    mountIcons(el);
+  }
+  function plural(n,f){var a=Math.abs(n)%100,b=a%10;if(a>10&&a<20)return f[2];if(b>1&&b<5)return f[1];if(b===1)return f[0];return f[2];}
+
+  /* ---------------- СПИСКИ СОБЫТИЙ ---------------- */
+  var feedState={shown:4};
+  function renderFeed(only){
+    var list=only||EVENTS;
+    var shown=only?list.length:Math.min(feedState.shown,list.length);
+    var host=document.getElementById('evfeed');
+    if(!host)return;
+    host.innerHTML=list.slice(0,shown).map(function(e){return evCard(e,EVENTS.indexOf(e));}).join('');
+    mountIcons(host);
+    var btn=document.querySelector('[data-more="ev"]');
+    if(btn) btn.style.display=(!only&&shown<EVENTS.length)?'':'none';
+  }
+
+  var filt={type:'all',loc:'all',free:false,day:null};
+  function renderList(){
+    var host=document.getElementById('evlist');
+    if(!host)return;
+    var list=EVENTS.filter(function(e){
+      if(filt.type!=='all'&&e.type!==filt.type)return false;
+      if(filt.loc!=='all'&&e.district!==filt.loc)return false;
+      if(filt.free&&!e.free)return false;
+      if(filt.day){
+        var p=dateParts(e.iso);
+        if(!(p.y===filt.day.y&&p.m===filt.day.m&&p.d===filt.day.d))return false;
+      }
+      return true;
+    });
+    host.innerHTML=list.length?list.map(function(e){return evCard(e,EVENTS.indexOf(e));}).join(''):
+      '<div class="aside__box"><h3>Ничего не найдено</h3><p style="margin:0;color:var(--body)">Снимите часть фильтров — например, оставьте только тип события.</p></div>';
+    mountIcons(host);
+    var cnt=document.getElementById('evcount');
+    if(!cnt)return;
+    var txt='Найдено: <b>'+list.length+'</b> '+plural(list.length,['событие','события','событий']);
+    if(filt.day){txt+=' · фильтр по дате '+filt.day.d+' '+MONTHS[filt.day.m].toLowerCase()+' <button class="btn btn--ghost btn--sm" type="button" data-dayreset="1" style="margin-left:8px">Сбросить дату</button>';}
+    cnt.innerHTML=txt;
+    var soon=document.getElementById('cal-soon');
+    if(soon){
+      var first7=EVENTS.slice(0,5);
+      soon.innerHTML=first7.map(function(e){
+        return '<li><span class="ic--16" data-ic="calendar" style="color:var(--amber);margin-top:2px"></span><span><b>'+e.d+' '+e.mon+' · '+e.time+'</b>'+e.t+'<br><span class="lbl">'+e.place+'</span></span></li>';
+      }).join('');
+      mountIcons(soon);
+    }
+  }
+
+  /* ---------------- ШАПКА И ФУТЕР ПОРТАЛА ---------------- */
+  var NAV=[['Главная','home'],['Новости','catalog'],['Календарь событий','calendar'],['Каталог статей','catalog'],['Обзоры','catalog'],['Полезное','catalog']];
+
+  function headerHTML(active){
+    var nav=NAV.map(function(n){
+      var on=(active==='home'&&n[0]==='Главная')||(active==='calendar'&&n[0]==='Календарь событий');
+      return '<a href="#scr-'+n[1]+'" data-scr="'+n[1]+'" class="'+(on?'is-on':'')+'">'+n[0]+'</a>';
+    }).join('');
+    var mnav=NAV.map(function(n){return '<a href="#scr-'+n[1]+'" data-scr="'+n[1]+'">'+n[0]+'<span class="ic--16" data-ic="chevron-right"></span></a>';}).join('');
+    return ''+
+    '<div class="util"><div class="wrap"><div class="util__in">'+
+      '<span><b>Понедельник, 21 сентября 2026</b></span>'+
+      '<span class="util__hide js-upd">Обновлено 18:40</span>'+
+      '<span class="util__hide util__w"><span class="ic--13" data-ic="pin"></span> +14 °C, облачно · ветер 3 м/с</span>'+
+      '<span class="util__hide util__w"><span class="ic--13" data-ic="chart"></span> USD 78,4 ₽ · EUR 91,2 ₽</span>'+
+      '<span class="util__r">'+
+        '<button class="util__tgl" type="button" data-theme-tgl aria-label="Сменить тему"><span class="util__tgl-t">Тёмная тема</span></button>'+
+        '<span class="util__sep"></span>'+
+        '<a href="#scr-article"><span class="ic--13" data-ic="rss"></span> RSS</a>'+
+        '<span class="util__sep"></span>'+
+        '<a href="#scr-article"><span class="ic--13" data-ic="mail"></span> Рассылка</a>'+
+        '<span class="util__sep"></span>'+
+        '<a href="#scr-admin">Вход для редакции</a>'+
+      '</span>'+
+    '</div></div></div>'+
+    '<div class="wrap">'+
+      '<div class="mast"><div class="mast__in">'+
+        '<a class="brand" href="#scr-home"><span class="brand__m">Ф</span><span><b class="brand__n">ФОКУС</b><span class="brand__s">Новости · события · обзоры · полезное</span></span></a>'+
+        '<div class="mast__search"><div class="search"><span class="ic--20" data-ic="search" style="color:var(--faint);margin-left:2px"></span><input type="search" placeholder="Поиск по статьям, событиям и обзорам" aria-label="Поиск"><button class="btn btn--blue btn--sm" type="button">Найти</button></div></div>'+
+        '<div class="mast__act">'+
+          '<button class="btn btn--ghost btn--sm" type="button"><span class="ic--16" data-ic="bell"></span>Напоминания</button>'+
+          '<button class="btn btn--blue btn--sm" type="button">Подписаться</button>'+
+          '<button class="burger" type="button" data-burger aria-label="Меню"><span class="ic--22" data-ic="menu"></span></button>'+
+        '</div>'+
+      '</div></div>'+
+      '<nav class="nav">'+nav+'</nav>'+
+      '<div class="mnav" id="mnav"><div class="mnav__in">'+mnav+
+        '<div class="mnav__foot">'+
+          '<div class="search"><span class="ic--20" data-ic="search" style="color:var(--faint);margin-left:2px"></span><input type="search" placeholder="Поиск по сайту" aria-label="Поиск"><button class="btn btn--blue btn--sm" type="button">Найти</button></div>'+
+          '<button class="btn btn--wide" type="button">Подписаться на рассылку</button>'+
+          '<button class="btn btn--ghost btn--wide" type="button"><span class="ic--16" data-ic="bell"></span>Напоминания о событиях</button>'+
+        '</div>'+
+      '</div></div>'+
+    '</div>';
+  }
+
+  function footerHTML(){
+    var sections=[
+      ['Разделы',[['Новости','catalog'],['Календарь событий','calendar'],['Каталог статей','catalog'],['Обзоры','catalog'],['Полезное','catalog']]],
+      ['Читателям',[['Подписка на рассылку','home'],['Напоминания о событиях','calendar'],['Правила комментирования','article'],['Стать автором','wp']]],
+      ['Сайту',[['Реклама на сайте','admin'],['Партнёрские материалы','catalog'],['Политика конфиденциальности','check'],['Cookies и аналитика','wp']]]
+    ];
+    return '<div class="wrap">'+
+      '<div class="ft__g">'+
+        '<div>'+
+          '<a class="brand" href="#scr-home" style="margin-bottom:14px"><span class="brand__m" style="width:38px;height:38px;font-size:18px">Ф</span><span><b class="brand__n" style="font-size:24px">ФОКУС</b><span class="brand__s">Информационный портал</span></span></a>'+
+          '<p style="margin:14px 0 16px;color:var(--body);font:400 14.5px/1.55 var(--sans);max-width:380px">Новости, календарь событий, обзоры и полезные инструкции. Прототип: тексты, цифры и изображения — демонстрационные.</p>'+
+          '<div class="row" style="gap:8px"><span class="tag"><span class="ic--13" data-ic="rss"></span>RSS</span><span class="tag"><span class="ic--13" data-ic="mail"></span>Подписка</span><span class="tag"><span class="ic--13" data-ic="share"></span>Соцсети</span></div>'+
+        '</div>'+
+        sections.map(function(s){
+          return '<div><h4>'+s[0]+'</h4><ul>'+s[1].map(function(l){return '<li><a href="#scr-'+l[1]+'" data-scr="'+l[1]+'">'+l[0]+'</a></li>';}).join('')+'</ul></div>';
+        }).join('')+
+      '</div>'+
+      '<div class="ft__bot"><span>© 2026 «ФОКУС». Демонстрационный прототип по ТЗ.</span>'+
+      '<span class="ft__legal"><a href="#scr-check">Соответствие ТЗ</a><a href="#scr-wp">Реализация на WordPress</a><a href="#scr-ui">UI-кит</a><a href="report.html" target="_blank" rel="noopener">Аналитический отчёт</a><a href="HANDOFF.md" target="_blank" rel="noopener">Передача проекта</a><a href="#scr-home">Наверх <span class="ic--13" data-ic="arrow-up"></span></a></span></div>'+
+    '</div>';
+  }
+
+  /* ---------------- ЭКРАНЫ ---------------- */
+  var HINTS={
+    home:'Главная страница портала. Бегущая полоса срочных новостей, главный материал дня со своим рельсом «Главное сейчас» и календарём, 4 сильные карточки, живая лента обновлений, видео и подкасты с опросом недели, рубрики, афиша недели, главные новости с колонкой, «Для вас», лента мероприятий, обзоры, спецпроект и подписка. Служебная полоса: погода, курсы и тёмная тема.',
+    article:'Страница статьи. Хлебные крошки и прогресс чтения, автор и метаданные, буквица и серифный текст, врезная цитата, таблица, реклама внутри текста (AD-5), партнёрский блок, карточка автора, «Читайте также» на 4 материала и реклама AD-8.',
+    calendar:'Календарь событий. Рабочие фильтры по типу, локации и цене, выбор дня в сетке, «Напомнить», экспорт в .ics, подробное описание по кнопке «Подробнее» и полоса напоминаний.',
+    catalog:'Каталог статей и обзоров: сортировки, фильтры тем и периода, рубрикатор, рейтинг и отзывы в карточках. Ниже — эталонный тип публикации «Обзор»: таблица, «плюсы и минусы», карточки товаров с партнёрскими ссылками.',
+    admin:'Админ-панель WordPress: статистика просмотров и кликов, управление рекламными зонами (включение и выключение), CRUD статей, роли и доступы, экспорт JSON/CSV, бэкапы и логи.',
+    ui:'UI-кит: палитра, типографика, кнопки, метки, поля, иконки, рекламные форматы, отступы и правила адаптива — то, что передаётся дизайнеру и верстальщику.',
+    wp:'Реализация на WordPress: карта решений по каждому пункту ТЗ, требования к скорости, SEO и безопасности, этапы внедрения и список вопросов к заказчику.',
+    check:'Матрица соответствия: каждый пункт обоих ТЗ и место, где он реализован в прототипе.'
+  };
+  var URLS={home:'fokus.example/',article:'fokus.example/sobytiya/polumarafon-2026/',calendar:'fokus.example/events/2026/09/',catalog:'fokus.example/articles/',admin:'fokus.example/wp-admin/',ui:'fokus.example/ui-kit/',wp:'fokus.example/o-proekte/wordpress/',check:'fokus.example/o-proekte/tz/'};
+  var state={screen:'home',width:1280};
+
+  function showScreen(name){
+    state.screen=name;
+    document.querySelectorAll('.screen').forEach(function(s){s.classList.toggle('is-on',s.id==='scr-'+name);});
+    document.querySelectorAll('#tabs .tab').forEach(function(t){t.classList.toggle('is-on',t.getAttribute('data-scr')===name);});
+    var h=document.getElementById('hint'); if(h) h.textContent=HINTS[name]||'';
+    var u=document.getElementById('devurl'); if(u) u.textContent=URLS[name]||'';
+    document.querySelectorAll('.mnav').forEach(function(m){m.classList.remove('is-open');});
+    fit();
+  }
+  function setWidth(w,label){
+    state.width=w;
+    document.getElementById('device').style.setProperty('--dw',w+'px');
+    document.getElementById('devlabel').textContent=label+' · '+w+' px';
+    document.querySelectorAll('#dev .seg__b').forEach(function(b){b.classList.toggle('is-on',+b.getAttribute('data-w')===w);});
+    fit();
+  }
+  function fit(){
+    var device=document.getElementById('device');
+    var stage=document.getElementById('stage');
+    if(!device||!stage)return;
+    var avail=stage.parentElement?stage.parentElement.clientWidth:state.width;
+    var s=Math.min(1,Math.max(320,avail-2)/state.width);
+    device.style.transform='scale('+s+')';
+    stage.style.width=(state.width*s)+'px';
+    stage.style.height=(device.offsetHeight*s)+'px';
+  }
+
+  /* ---------------- СБОРКА ---------------- */
+  mountIcons(document);
+  document.querySelectorAll('[data-header]').forEach(function(el){
+    var v=el.getAttribute('data-header');
+    el.innerHTML=headerHTML(el.closest('#scr-article')?'article':(v==='Календарь'?'calendar':(v==='Каталог'?'catalog':'home')));
+    mountIcons(el);
+  });
+  document.querySelectorAll('[data-footer]').forEach(function(el){el.innerHTML=footerHTML();mountIcons(el);});
+  document.querySelectorAll('[data-cal]').forEach(renderCal);
+  renderFeed();
+  renderList();
+  showScreen('home');
+
+  /* ---------------- ИНТЕРФЕЙС ---------------- */
+  document.getElementById('tabs').addEventListener('click',function(e){
+    var b=e.target.closest('[data-scr]');if(!b)return;
+    showScreen(b.getAttribute('data-scr'));
+    var c=document.querySelector('.canvas');
+    if(c&&window.scrollY>c.offsetTop-10)window.scrollTo({top:c.offsetTop-80,behavior:'smooth'});
+  });
+  document.getElementById('dev').addEventListener('click',function(e){
+    var b=e.target.closest('[data-w]');if(!b)return;
+    setWidth(+b.getAttribute('data-w'),b.textContent.trim());
+  });
+  document.getElementById('chk-ads').addEventListener('change',function(){
+    document.body.classList.toggle('ads-on',this.checked);
+  });
+  document.getElementById('chk-grid').addEventListener('change',function(){
+    document.body.classList.toggle('grids-on',this.checked);
+  });
+
+  document.addEventListener('click',function(e){
+    var link=e.target.closest('a[href^="#scr-"]');
+    if(link){
+      var t=link.getAttribute('data-scr')||link.getAttribute('href').replace('#scr-','');
+      var hit=document.querySelector('#tabs [data-scr="'+t+'"]');
+      if(hit){e.preventDefault();showScreen(t);}
+      return;
+    }
+    var bg=e.target.closest('[data-burger]');
+    if(bg){var m=document.getElementById('mnav');if(m)m.classList.toggle('is-open');return;}
+
+    var nav=e.target.closest('[data-cnav]');
+    if(nav){
+      var el=nav.closest('[data-cal]'),key=el.getAttribute('data-cal'),st=calState[key];
+      st.m+=+nav.getAttribute('data-cnav');
+      if(st.m<0){st.m=11;st.y--;} if(st.m>11){st.m=0;st.y++;}
+      st.sel=null;renderCal(el);return;
+    }
+    var day=e.target.closest('[data-day]');
+    if(day){
+      var el2=day.closest('[data-cal]'),key2=el2.getAttribute('data-cal'),st2=calState[key2];
+      var d=+day.getAttribute('data-day');
+      st2.sel=(st2.sel===d)?null:d;
+      renderCal(el2);
+      if(st2.sel&&eventsOn(st2.y,st2.m,st2.sel).length){filt.day={y:st2.y,m:st2.m,d:st2.sel};renderList();}
+      return;
+    }
+    var ds=e.target.closest('[data-dayshow]');
+    if(ds){
+      var el3=ds.closest('[data-cal]'),key3=el3.getAttribute('data-cal'),st3=calState[key3];
+      filt.day={y:st3.y,m:st3.m,d:st3.sel};renderList();
+      var host=document.getElementById('evlist');
+      if(host)host.scrollIntoView({behavior:'smooth',block:'start'});
+      return;
+    }
+    var dr=e.target.closest('[data-dayreset]');
+    if(dr){
+      filt.day=null;renderList();
+      Object.keys(calState).forEach(function(k){calState[k].sel=null;});
+      document.querySelectorAll('[data-cal]').forEach(renderCal);return;
+    }
+
+    var fc=e.target.closest('.fchip');
+    if(fc){
+      var group=fc.parentElement;
+      group.querySelectorAll('.fchip').forEach(function(b){b.classList.remove('is-on');});
+      fc.classList.add('is-on');
+      if(fc.hasAttribute('data-ftype'))filt.type=fc.getAttribute('data-ftype')==='all'?'all':fc.textContent.trim();
+      if(fc.hasAttribute('data-floc'))filt.loc=fc.getAttribute('data-floc')==='all'?'all':fc.textContent.trim();
+      if(fc.hasAttribute('data-fprice'))filt.free=fc.classList.contains('is-on');
+      renderList();return;
+    }
+
+    var more=e.target.closest('[data-more="ev"]');
+    if(more){feedState.shown=EVENTS.length;renderFeed();return;}
+
+    var exp=e.target.closest('[data-exp]');
+    if(exp){
+      var card=exp.closest('.ev'),det=card.querySelector('.detail');
+      var open=det.classList.toggle('is-open');
+      var wc=card.querySelector('.when-closed'), wo=card.querySelector('.when-open');
+      if(wc)wc.style.display=open?'none':'';
+      if(wo)wo.style.display=open?'':'none';
+      var chev=exp.querySelector('.ic'); if(chev) chev.style.transform=open?'rotate(90deg)':'';
+      return;
+    }
+    var rem=e.target.closest('[data-remind]');
+    if(rem){
+      var on=rem.classList.toggle('is-on');
+      var rt=rem.querySelector('.rem-txt');
+      if(rt) rt.textContent=on?'Напомним · письмо придёт за день и за час':'Напомнить';
+      return;
+    }
+    var ics=e.target.closest('[data-ics]');
+    if(ics){
+      var ev=EVENTS[+ics.getAttribute('data-ics')];
+      var p=dateParts(ev.iso);
+      function pad(n){return (n<10?'0':'')+n;}
+      var stamp=p.y+pad(p.m+1)+pad(p.d);
+      var body=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//FOKUS//prototype//RU','BEGIN:VEVENT',
+        'UID:ev'+ics.getAttribute('data-ics')+'@fokus.example',
+        'DTSTAMP:'+stamp+'T090000','DTSTART:'+stamp+'T'+ev.time.slice(0,5).replace(':','')+'00',
+        'SUMMARY:'+ev.t.replace(/[,;]/g,''),
+        'LOCATION:'+ev.place+', '+ev.addr,
+        'DESCRIPTION:'+ev.short.replace(/[,;]/g,''),
+        'END:VEVENT','END:VCALENDAR'].join('\r\n');
+      try{
+        var blob=new Blob([body],{type:'text/calendar'});
+        var a=document.createElement('a');
+        a.href=URL.createObjectURL(blob);a.download='fokus-event.ics';
+        document.body.appendChild(a);a.click();a.remove();
+      }catch(err){}
+      return;
+    }
+    var sh=e.target.closest('[data-share]');
+    if(sh){
+      var note=document.createElement('span');
+      note.className='lbl';note.textContent='Ссылка скопирована';
+      sh.parentElement.appendChild(note);
+      setTimeout(function(){note.remove();},2000);
+      return;
+    }
+    var sw=e.target.closest('.sw');
+    if(sw){sw.classList.toggle('is-on');return;}
+  });
+
+  document.addEventListener('submit',function(e){
+    var f=e.target.closest('form');
+    if(!f)return;
+    e.preventDefault();
+    var note=f.parentElement.querySelector('.form-ok');
+    if(!note){
+      note=document.createElement('p');
+      note.className='form-ok';
+      note.style.cssText='margin:12px 0 0;padding:12px 15px;border:1px solid #D5E5DC;background:#EEF5F1;border-radius:2px;color:#2C6E52;font-size:14px';
+      f.parentElement.appendChild(note);
+    }
+    note.textContent=(f.querySelector('input[type="text"]')?'Комментарий отправлен на модерацию. Спасибо!':'Готово! Проверьте почту: там письмо для подтверждения подписки.');
+  },true);
+
+  window.addEventListener('resize',fit);
+  if(window.ResizeObserver){new ResizeObserver(fit).observe(document.getElementById('device'));}
+  window.addEventListener('load',fit);
+  setTimeout(fit,150);
+})();
+</script>
+
+<script>
+/* ======================= ПРЕМИУМ-СЛОЙ ПРОТОТИПА: живые блоки, анимация, тёмная тема ======================= */
+(function(){
+  var doc=document, site=doc.getElementById('site'); if(!site) return;
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function $(s,r){return (r||doc).querySelector(s);}
+  function $$(s,r){return Array.prototype.slice.call((r||doc).querySelectorAll(s));}
+  /* «Часы портала»: демонстрационное время, согласованное с содержимым (18:52 = «сейчас»), идёт вперёд на минуту с каждой новой записью ленты */
+  var DM=18*60+52;
+  function clock(){ var h=Math.floor(DM/60)%24, m=DM%60; return ('0'+h).slice(-2)+':'+('0'+m).slice(-2); }
+  function advance(){ DM=(DM+1)%1440; }
+  function fmt(n){ return String(n).replace(/\B(?=(\d{3})+(?!\d))/g,' '); }
+
+  /* ---------- 1. Появление блоков при прокрутке ---------- */
+  var RV='.sec__head,.card,.tile,.bl,.med__c,.ev,.native,.ad,.poll,.fyou,.leadstory,.live__list li,.aside__box,.figure,.pullquote,.tablewrap,.pm,.prod,.sub,.promo,.ft__g';
+  $$(RV,site).forEach(function(el){ el.classList.add('rv'); });
+  var io = ('IntersectionObserver' in window) ? new IntersectionObserver(function(es){
+    es.forEach(function(e){
+      if(!e.isIntersecting) return;
+      var el=e.target, p=el.parentElement, sibs=p?$$('.rv',p):[], i=sibs.indexOf(el);
+      el.style.transitionDelay = (i>0 && i<7 ? i*70 : 0)+'ms';
+      el.classList.add('is-in');
+      io.unobserve(el);
+    });
+  },{root:null,rootMargin:'0px 0px -6% 0px',threshold:0.05}) : null;
+
+  /* ---------- 2. Счётчики ---------- */
+  function countUp(el){
+    if(el.getAttribute('data-c')) return;
+    el.setAttribute('data-c','1');
+    var to=+el.getAttribute('data-to')||0;
+    if(reduce){ el.textContent=fmt(to); return; }
+    var t0=null, dur=1200;
+    function step(ts){
+      if(t0===null) t0=ts;
+      var k=Math.min(1,(ts-t0)/dur), e=1-Math.pow(1-k,3);
+      el.textContent=fmt(Math.round(to*e));
+      if(k<1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+  var cio = ('IntersectionObserver' in window) ? new IntersectionObserver(function(es){
+    es.forEach(function(e){ if(e.isIntersecting){ cio.unobserve(e.target); countUp(e.target); } });
+  },{threshold:0.3}) : null;
+  $$('[data-to]',site).forEach(function(el){ el.textContent='0'; if(!cio) countUp(el); else cio.observe(el); });
+
+  function scan(){
+    var act=$('.screen.is-on',site)||site;
+    $$('.rv:not(.is-in)',act).forEach(function(el){ if(io) io.observe(el); else el.classList.add('is-in'); });
+    $$('[data-to]',act).forEach(function(el){
+      if(el.getAttribute('data-c')) return;
+      var r=el.getBoundingClientRect();
+      if(r.top<window.innerHeight*1.1 && r.bottom>-40) countUp(el);
+    });
+  }
+  scan();
+  if(window.MutationObserver){ var mo=new MutationObserver(function(){ scan(); }); $$('.screen',site).forEach(function(s){ mo.observe(s,{attributes:true,attributeFilter:['class']}); }); }
+  window.addEventListener('resize',function(){ scan(); });
+
+  /* ---------- 3. Бегущая строка срочных новостей ---------- */
+  (function(){
+    var track=doc.getElementById('brk'); if(!track) return;
+    var n=track.children.length; if(!n) return;
+    Array.prototype.slice.call(track.children).forEach(function(it){ track.appendChild(it.cloneNode(true)); });
+    function measure(){
+      var first=track.children[0], second=track.children[n];
+      if(!first||!second) return;
+      var half=second.offsetLeft-first.offsetLeft;
+      if(half>0){ track.style.setProperty('--tick-shift',(-half)+'px'); track.style.animationDuration=Math.max(26,Math.round(half/46))+'s'; }
+    }
+    measure(); window.addEventListener('resize',measure); setTimeout(measure,400);
+    if(reduce) track.style.animation='none';
+  })();
+
+  /* ---------- 4. Живая лента обновлений ---------- */
+  (function(){
+    var list=doc.getElementById('livlist'), hd=doc.getElementById('livehd');
+    if(!list||!hd||reduce) return;
+    var lbl=hd.querySelector('.lbl'), qi=0;
+    var feed=[
+      ['Открыта запись на городской полумарафон: 4 000 мест','Регистрация до 30 сентября, стартовый пакет — 1 200 ₽, детский забег — бесплатно.'],
+      ['Светомузыкальный фонтан на площади заработает в пятницу','Сеансы каждые 30 минут с 20:00, вход свободный.'],
+      ['Погода на выходные: +17 °С и без дождя','Хорошие условия для прогулок, велосипеда и уличных событий.'],
+      ['Трамваи №7 и №12 меняют маршрут до конца месяца','Ремонт путей у Заречья: схема объезда и остановки — в материале.']
+    ];
+    setInterval(function(){
+      advance();
+      var f=feed[qi++%feed.length], li=doc.createElement('li');
+      li.className='is-new';
+      li.innerHTML='<time>'+clock()+'</time><div><b><a href="#scr-article">'+f[0]+'</a><span class="live__mark">Только что</span></b><span>'+f[1]+'</span></div>';
+      list.insertBefore(li,list.firstChild);
+      while(list.children.length>6) list.removeChild(list.lastChild);
+      if(lbl) lbl.textContent='сегодня, '+clock()+' · обновляется в течение дня';
+      hd.classList.add('is-flash'); setTimeout(function(){hd.classList.remove('is-flash');},1700);
+      setTimeout(function(){ li.classList.remove('is-new'); },1400);
+    },11000);
+  })();
+
+  /* ---------- 5. Опрос недели ---------- */
+  (function(){
+    var p=doc.getElementById('poll'); if(!p) return;
+    p.addEventListener('click',function(e){
+      var b=e.target&&e.target.closest?e.target.closest('.poll__o'):null;
+      if(!b||p.classList.contains('is-done')) return;
+      var opts=$$('.poll__o',p), k=opts.indexOf(b);
+      var vals=opts.map(function(o,i){ return (+o.getAttribute('data-pct')||0)+(i===k?3:0); });
+      var sum=vals.reduce(function(a,c){return a+c;},0)||1;
+      opts.forEach(function(o,i){
+        var pct=Math.round(vals[i]/sum*100), bar=o.querySelector('i'), em=o.querySelector('em');
+        if(bar) bar.style.width=pct+'%';
+        if(em) em.textContent=pct+'%';
+      });
+      b.classList.add('is-pick'); p.classList.add('is-done');
+      var ft=p.querySelector('.poll__ft');
+      if(ft) ft.textContent='Спасибо, голос учтён. Проголосовали 2 148 человек — итоги и явка видны в админке, раздел «Вовлечённость».';
+    });
+  })();
+
+  /* ---------- 6. «Для вас» ---------- */
+  (function(){
+    var box=doc.getElementById('fyou'); if(!box) return;
+    var DATA={
+      'Город и транспорт':[['Метро до двух ночи: что изменится в расписании','Город · 4 мин чтения'],['Новый автобус №24: маршрут, интервалы, остановки','Транспорт · 3 мин чтения'],['Велосипед в транспорте с 1 октября: правила и штрафы','Транспорт · 5 мин чтения']],
+      'Деньги и налоги':[['Тарифы ЖКХ: как пересчитать платёж и куда обращаться','Деньги · 8 мин чтения'],['Самозанятость за один вечер: пошаговая инструкция','Полезное · 7 мин чтения'],['Возврат товара: 7 ситуаций, когда продавец не прав','Полезное · 6 мин чтения']],
+      'Технологии':[['Электронные книги до 30 000 ₽: сравнение пяти моделей','Обзор · 9 мин чтения'],['Робот-пылесос: три модели, которые стоят своих денег','Обзор · 10 мин чтения'],['Мобильная связь: как сэкономить до 40%','Сравнение · 5 мин чтения']],
+      'Культура и афиша':[['Фестиваль уличной еды: 40 фудкортов и маркет','Афиша · 2 мин чтения'],['Выставка «Свет и город»: 12 инсталляций','Афиша · 2 мин чтения'],['Ночь инди-музыки: три группы за один вечер','Афиша · 3 мин чтения']]
+    };
+    var list=$('.fyou__list',box), note=$('[data-fyou-note]',box), chips=$$('.fyou__chip',box);
+    function plural(n){ var m=n%100; if(m>10&&m<20) return 'материалов'; var d=n%10; return d===1?'материал':(d>1&&d<5?'материала':'материалов'); }
+    function ls(k,v){ try{ if(v===undefined) return localStorage.getItem(k); localStorage.setItem(k,v); }catch(e){} return null; }
+    function paintNote(){ var n=+(ls('fokusReads')||0);
+      if(note) note.textContent = n>0 ? ('Вы прочитали '+n+' '+plural(n)+' — подборка собрана по вашим интересам') : 'Подборка собирается по вашим интересам и обновляется после каждого прочитанного материала'; }
+    function render(name){
+      if(!list) return;
+      list.innerHTML=(DATA[name]||[]).map(function(it){
+        return '<div class="fyou__i"><b><a href="#scr-article">'+it[0]+'</a></b><span class="med__m">'+it[1]+'</span></div>';
+      }).join('');
+      chips.forEach(function(c){ c.classList.toggle('is-on',c.textContent.trim()===name); });
+    }
+    chips.forEach(function(c){ c.addEventListener('click',function(){ var n=c.textContent.trim(); render(n); ls('fokusTopic',n); }); });
+    render(ls('fokusTopic')||'Город и транспорт'); paintNote();
+    var rs=$('[data-fyou-reset]',box);
+    if(rs) rs.addEventListener('click',function(){
+      try{ localStorage.removeItem('fokusReads'); localStorage.removeItem('fokusTopic'); }catch(e){}
+      render('Город и транспорт'); paintNote();
+      if(note) note.textContent='История чтения очищена — подборка сброшена';
+    });
+    doc.addEventListener('click',function(e){
+      var a=e.target&&e.target.closest?e.target.closest('a[href="#scr-article"]'):null; if(!a) return;
+      var n=+(ls('fokusReads')||0)+1; ls('fokusReads',String(n)); paintNote();
+    },true);
+  })();
+
+  /* ---------- 7. Прогресс чтения статьи ---------- */
+  (function(){
+    var scr=doc.getElementById('scr-article'); if(!scr) return;
+    var bar=$('[data-read-bar]',scr), pe=$('[data-read-pct]',scr), le=$('[data-read-left]',scr), total=6;
+    function upd(){
+      var r=scr.getBoundingClientRect(), vh=window.innerHeight||800;
+      var span=Math.max(1,r.height-vh*0.55);
+      var p=Math.min(100,Math.max(0,Math.round((-r.top+vh*0.4)/span*100)));
+      if(bar) bar.style.width=p+'%';
+      if(pe) pe.textContent=p;
+      if(le){ var left=Math.max(0,Math.ceil(total*(100-p)/100)); le.textContent = left>0?('осталось ~'+left+' мин'):'материал прочитан'; }
+    }
+    window.addEventListener('scroll',upd,{passive:true}); window.addEventListener('resize',upd); upd();
+  })();
+
+  /* ---------- 8. Тёмная тема ---------- */
+  (function(){
+    var KEY='fokusTheme';
+    function stored(){ try{return localStorage.getItem(KEY);}catch(e){return null;} }
+    function apply(v){
+      site.classList.toggle('theme-dark', v==='dark');
+      $$('[data-theme-tgl]').forEach(function(b){
+        var t=$('.util__tgl-t',b); if(t) t.textContent = v==='dark' ? 'Светлая тема' : 'Тёмная тема';
+        b.setAttribute('aria-pressed', v==='dark'?'true':'false');
+      });
+    }
+    apply(stored()==='dark'?'dark':'light');
+    doc.addEventListener('click',function(e){
+      var b=e.target&&e.target.closest?e.target.closest('[data-theme-tgl]'):null; if(!b) return;
+      var v=site.classList.contains('theme-dark')?'light':'dark';
+      apply(v); try{ localStorage.setItem(KEY,v); }catch(err){}
+    });
+  })();
+
+  /* ---------- 9. Шапка: сжатие при прокрутке ---------- */
+  (function(){
+    var last=null;
+    function upd(){
+      var scr=$('.screen.is-on',site); if(!scr) return;
+      var hd=$('.hd',scr); if(!hd) return;
+      var nav=$('.nav',hd), off=nav?(nav.offsetTop||0):0;
+      var panel=doc.querySelector('.top'), ph=panel?panel.getBoundingClientRect().height:0;
+      hd.style.setProperty('--sticky-top',(ph-off)+'px');
+      var y=window.scrollY||window.pageYOffset||0, on=y>off+8;
+      if(on!==last){ last=on; hd.classList.toggle('is-stuck',on); hd.classList.toggle('is-compact',on); }
+    }
+    window.addEventListener('scroll',upd,{passive:true}); window.addEventListener('resize',upd);
+    setTimeout(upd,300); upd();
+  })();
+
+  /* ---------- 10. Часы в служебной полосе и в ленте ---------- */
+  (function(){
+    function upd(){
+      $$('.js-upd').forEach(function(el){
+        var m=el.textContent.match(/^(.*?)(\d{1,2}:\d{2})(.*)$/);
+        el.textContent = m ? (m[1]+clock()+m[3]) : ('Обновлено '+clock());
+      });
+    }
+    setInterval(upd,60000); upd();
+  })();
+})();
+</script>
+
+</body>
+</html>

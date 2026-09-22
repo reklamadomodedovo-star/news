@@ -1,0 +1,8 @@
+# служебное и сгенерированное
+__pycache__/
+*.pyc
+.cache/
+.venv/
+.DS_Store
+fokus-prototype.zip
+_shots/*.png

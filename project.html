@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Проект «ФОКУС» — материалы прототипа</title>
+<style>
+*,*::before,*::after{box-sizing:border-box}
+:root{
+  --paper:#FBFAF8;--surface:#fff;--tint:#F5F3EE;--ink:#0D1A26;--body:#2C3742;--sec:#5B6672;--muted:#7C8794;
+  --line:#E6E3DC;--line-2:#D6D2C9;--blue:#0F4C81;--red:#A62B2B;--amber:#8C5A2B;--ok:#2C6E52;
+  --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PT Sans","Helvetica Neue",Arial,sans-serif;
+  --serif:Georgia,"Iowan Old Style","Palatino Linotype",Palatino,"PT Serif","Times New Roman",serif;
+}
+body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.6 var(--sans);-webkit-font-smoothing:antialiased}
+a{color:var(--blue);text-decoration:none}
+a:hover{text-decoration:underline}
+.wrap{max-width:1120px;margin:0 auto;padding:0 30px}
+header{border-bottom:1px solid var(--line-2);background:var(--surface)}
+.hero{max-width:1120px;margin:0 auto;padding:40px 30px 30px}
+.kicker{margin:0 0 10px;font:600 11.5px/1.4 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--blue);display:inline-flex;align-items:center;gap:9px}
+.kicker::before{content:"";width:16px;height:2px;background:currentColor}
+h1{margin:0;font:700 42px/1.12 var(--serif);letter-spacing:-.015em}
+.lead{margin:16px 0 0;font-size:19px;line-height:1.6;color:var(--body);max-width:860px}
+.meta{display:flex;flex-wrap:wrap;gap:10px 22px;margin-top:18px;font-size:13px;color:var(--muted)}
+.meta b{color:var(--sec);font-weight:600}
+section{padding:40px 0;border-bottom:1px solid var(--line)}
+section:last-of-type{border-bottom:0}
+h2{margin:0 0 6px;font:700 27px/1.2 var(--serif)}
+.sub{margin:0 0 22px;color:var(--sec);font-size:16px}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+.card{border:1px solid var(--line);border-top:2px solid var(--ink);background:var(--surface);padding:22px 24px;display:flex;flex-direction:column;gap:10px}
+.card h3{margin:0;font:700 20px/1.3 var(--serif)}
+.card p{margin:0;color:var(--body);font-size:15.5px}
+.card .go{margin-top:auto;padding-top:12px;font:600 15px/1 var(--sans);display:inline-flex;align-items:center;gap:8px}
+.pill{display:inline-block;padding:3px 9px;border-radius:2px;font:600 12px/1.5 var(--sans)}
+.pill--blue{background:#EDF3F8;color:var(--blue)}
+.pill--ok{background:#EEF5F1;color:var(--ok)}
+.pill--amber{background:#FAF4EA;color:var(--amber)}
+.shots{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.shot{margin:0;border:1px solid var(--line);background:var(--surface)}
+.shot__open{display:block;overflow:hidden;border-bottom:1px solid var(--line)}
+.shot img{display:block;width:100%;height:auto;transition:transform .5s cubic-bezier(.22,.68,.32,1)}
+.shot:hover img{transform:scale(1.03)}
+.shot{transition:box-shadow .3s,border-color .3s}
+.shot:hover{box-shadow:0 14px 32px rgba(13,26,38,.12);border-color:var(--line-2)}
+.shot figcaption{padding:11px 14px;font:400 13px/1.45 var(--sans);color:var(--sec)}
+.shot b{display:block;font:600 14px/1.35 var(--serif);color:var(--ink);margin-bottom:3px}
+ul.list{margin:0;padding-left:20px;color:var(--body);font-size:15.5px;line-height:1.6}
+ul.list li{margin-bottom:8px}
+.note{border:1px solid var(--line);border-left:3px solid var(--amber);background:#FDFAF6;padding:16px 20px;color:var(--body);font-size:15px}
+footer{padding:30px 0 60px;background:var(--tint);border-top:1px solid var(--line-2);color:var(--sec);font-size:13.5px}
+.pills{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 14px}
+@media (max-width:900px){.grid,.shots{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:620px){
+  h1{font-size:29px}.lead{font-size:17px}
+  .wrap,.hero{padding-left:18px;padding-right:18px}
+  .grid,.shots{grid-template-columns:minmax(0,1fr)}
+  section{padding:30px 0}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="hero">
+    <p class="kicker">Проект информационного портала</p>
+    <h1>«ФОКУС» — прототип, аналитика и материалы для передачи</h1>
+    <p class="lead">Демонстрационный прототип новостного портала по двум техническим заданиям: дизайн инфо-сайта с рекламой и реализация на WordPress. Ниже — сам прототип, сводный аналитический отчёт, бриф и документ передачи проекта.</p>
+    <div class="meta">
+      <span>Экранов в прототипе: <b>8</b></span>
+      <span>Адаптив: <b>1280 / 834 / 390 px</b></span>
+      <span>Рекламных зон: <b>AD-1…AD-13</b></span>
+      <span>Источников в отчёте: <b>18</b></span>
+      <span>Архив проекта: <b><a href="fokus-prototype.zip">ZIP</a></b></span>
+    </div>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <h2>Основные материалы</h2>
+    <p class="sub">Открывать по порядку: сначала живой прототип, затем отчёт с обоснованиями.</p>
+    <div class="grid">
+      <div class="card">
+        <span class="pill pill--blue">Главное</span>
+        <h3>Прототип портала</h3>
+        <p>8 экранов: главная, статья, календарь, каталог и обзоры, админ-панель, UI-кит, реализация на WordPress, матрица соответствия ТЗ. Переключатели устройств, разметка рекламы, сетка, тёмная тема, живые механики.</p>
+        <span class="go"><a href="index.html">Открыть прототип →</a></span>
+      </div>
+      <div class="card">
+        <span class="pill pill--ok">Исследование</span>
+        <h3>Аналитический отчёт</h3>
+        <p>Топ-порталы мира и России, что привлекает читателя, как внешний вид связан с популярностью, 20 правил портала и таблица «что внедрено». 18 источников: Similarweb, Reuters Institute, Pew Research, Google, Mediascope, SND.</p>
+        <span class="go"><a href="report.html">Читать отчёт →</a></span>
+      </div>
+      <div class="card">
+        <span class="pill pill--amber">Документация</span>
+        <h3>Бриф проекта</h3>
+        <p>Палитра и типографика, порядок блоков главной, структура статьи, карта рекламных зон, UI-кит, адаптив, админка, карта решений WordPress, этапы работ и открытые вопросы к заказчику.</p>
+        <span class="go"><a href="brief.md">Открыть бриф →</a></span>
+      </div>
+      <div class="card">
+        <span class="pill">Для продолжения</span>
+        <h3>Передача проекта (HANDOFF)</h3>
+        <p>Полный технический контекст для другого исполнителя или нейросети: структура файлов, сборка и проверки, токены, интерактив, грабли, запреты, статус, план дальнейших шагов.</p>
+        <span class="go"><a href="HANDOFF.md">Открыть документ →</a></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>Макеты экранов</h2>
+    <p class="sub">Компьютер, планшет, телефон, разметка рекламных зон. Показаны облегчённые превью — <b>клик открывает полный PNG</b> в отдельной вкладке.</p>
+    <div class="pills">
+      <span class="pill pill--blue">Главная · ПК</span>
+      <span class="pill pill--blue">Планшет 834</span>
+      <span class="pill pill--blue">Телефон 390</span>
+      <span class="pill pill--amber">Рекламные зоны</span>
+      <span class="pill pill--ok">Тёмная тема</span>
+    </div>
+    <div class="shots">
+      <figure class="shot"><a class="shot__open" href="makety/maket-glavnaya-kompyuter.png" target="_blank" rel="noopener"><img src="makety/web/maket-glavnaya-kompyuter.jpg" alt="Главная страница на компьютере" loading="lazy"></a><figcaption><b>Главная, компьютер</b>Первый экран, лента обновлений, рубрики, афиша, обзоры, подписка</figcaption></figure>
+      <figure class="shot"><a class="shot__open" href="makety/maket-glavnaya-telefon.png" target="_blank" rel="noopener"><img src="makety/web/maket-glavnaya-telefon.jpg" alt="Главная на телефоне" loading="lazy"></a><figcaption><b>Главная, телефон</b>Одна колонка, бургер-меню, реклама ≤ 200 px по ТЗ</figcaption></figure>
+      <figure class="shot"><a class="shot__open" href="makety/maket-glavnaya-reklamnye-zony.png" target="_blank" rel="noopener"><img src="makety/web/maket-glavnaya-reklamnye-zony.jpg" alt="Разметка рекламных зон" loading="lazy"></a><figcaption><b>Разметка рекламы</b>Зоны AD-1…AD-13 с форматами и правилами</figcaption></figure>
+      <figure class="shot"><a class="shot__open" href="makety/maket-statya-kompyuter.png" target="_blank" rel="noopener"><img src="makety/web/maket-statya-kompyuter.jpg" alt="Статья на компьютере" loading="lazy"></a><figcaption><b>Статья, компьютер</b>Прогресс чтения, автор, подзаголовки, «Читайте также»</figcaption></figure>
+      <figure class="shot"><a class="shot__open" href="makety/maket-kalendar.png" target="_blank" rel="noopener"><img src="makety/web/maket-kalendar.jpg" alt="Календарь событий" loading="lazy"></a><figcaption><b>Календарь событий</b>Фильтры, сетка месяца, «Ближайшие 7 дней», .ics</figcaption></figure>
+      <figure class="shot"><a class="shot__open" href="makety/maket-temnaya-tema.png" target="_blank" rel="noopener"><img src="makety/web/maket-temnaya-tema.jpg" alt="Тёмная тема" loading="lazy"></a><figcaption><b>Тёмная тема</b>Отдельная палитра для читательских экранов</figcaption></figure>
+      <figure class="shot"><a class="shot__open" href="makety/maket-katalog-obzory.png" target="_blank" rel="noopener"><img src="makety/web/maket-katalog-obzory.jpg" alt="Каталог и обзоры" loading="lazy"></a><figcaption><b>Каталог и обзоры</b>Сортировки, рейтинги, партнёрские материалы</figcaption></figure>
+      <figure class="shot"><a class="shot__open" href="makety/maket-admin.png" target="_blank" rel="noopener"><img src="makety/web/maket-admin.jpg" alt="Админ-панель" loading="lazy"></a><figcaption><b>Админ-панель</b>KPI, рекламные зоны, роли, экспорт, бэкапы</figcaption></figure>
+      <figure class="shot"><a class="shot__open" href="makety/maket-ui-kit.png" target="_blank" rel="noopener"><img src="makety/web/maket-ui-kit.jpg" alt="UI-кит" loading="lazy"></a><figcaption><b>UI-кит</b>Палитра, типографика, элементы, правила адаптива</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>Что уже сделано</h2>
+    <p class="sub">Коротко — чтобы не читать всё подряд.</p>
+    <ul class="list">
+      <li><b>Прототип из 8 экранов</b> с адаптивом на 1280/834/390 px, переключателями устройств, разметкой рекламы и сетки.</li>
+      <li><b>Живые механики:</b> бегущая строка срочных, лента обновлений с новыми записями, счётчики просмотров, опрос недели с результатами, «Для вас» с памятью прочитанного, тёмная тема.</li>
+      <li><b>Анимация без вреда чтению:</b> появление блоков при прокрутке, подъём карточки и зум фотографии, липкая сжатая шапка, прогресс чтения; всё отключается при <span class="mono">prefers-reduced-motion</span>.</li>
+      <li><b>Редакционная фотография</b> вместо серых заглушек во всех визуальных блоках, с подписями и авторством снимков.</li>
+      <li><b>13 рекламных зон</b> AD-1…AD-13 с форматами для ПК и телефона, плотность в пределах рекомендаций отчёта.</li>
+      <li><b>Календарь событий</b> с рабочими фильтрами, напоминаниями и экспортом в .ics; <b>каталог</b> с сортировками и эталонным типом «Обзор»; <b>админка</b> с управлением зонами и ролями.</li>
+      <li><b>Проверки:</b> горизонтального переполнения нет ни на одном экране, ошибок JS нет, высота рекламы на телефоне в лимитах ТЗ.</li>
+    </ul>
+    <div class="note" style="margin-top:20px"><b>Что осталось уточнить у заказчика:</b> название и тематика сайта (сейчас вымышленные «ФОКУС»), финальный список рубрик, рекламные сети (РСЯ / AdSense / GAM — от них зависят форматы), нужен ли форум и комментарии на первом релизе, брендинг и бюджет на платные плагины.</div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    «ФОКУС» · демонстрационный прототип по двум ТЗ. Тексты, цифры и изображения — демонстрационные.
+  </div>
+</footer>
+
+</body>
+</html>
